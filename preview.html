@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>پیش‌نمایش نمونه | وب‌ساز</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pv-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; padding: 16px 24px; background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+    .pv-info h1 { font-size: 1.15rem; }
+    .pv-info small { color: var(--muted); }
+    .pv-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .seg button { padding: 8px 16px; border: none; background: var(--card); color: var(--text); font-family: inherit; cursor: pointer; }
+    .seg button.on { background: var(--primary); color: #fff; }
+    .pv-bar .btn { padding: 8px 20px; font-size: .95rem; }
+
+    .device { padding: 30px 16px 60px; background: var(--bg-alt); min-height: 80vh; }
+    .frame { container-type: inline-size; max-width: 1100px; margin: auto; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.25); transition: max-width .35s; }
+    .device.mobile .frame { max-width: 390px; }
+    .m-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #e5e7eb; direction: ltr; }
+    .dots { display: flex; gap: 6px; }
+    .dots i { width: 10px; height: 10px; border-radius: 50%; background: #f87171; }
+    .dots i:nth-child(2) { background: #fbbf24; }
+    .dots i:nth-child(3) { background: #34d399; }
+    .m-url { flex: 1; background: #fff; border-radius: 99px; padding: 3px 14px; font-size: .8rem; color: #6b7280; text-align: center; }
+
+    /* خود سایت نمونه */
+    .site { --h: 250; --c1: hsl(var(--h) 75% 55%); --c2: hsl(calc(var(--h) + 40) 75% 45%); color: #1f2937; background: #fff; line-height: 1.8; }
+    .s-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 24px; border-bottom: 1px solid #eee; }
+    .s-logo { font-weight: 800; color: var(--c1); }
+    .s-links { display: flex; gap: 18px; font-size: .92rem; color: #4b5563; }
+    .s-btn { display: inline-block; padding: 9px 22px; border-radius: 10px; border: none; background: var(--c1); color: #fff; font-family: inherit; }
+    .s-hero { text-align: center; padding: 70px 24px; color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); }
+    .s-hero .big { font-size: 3.4rem; }
+    .s-hero h2 { font-size: 2rem; margin: 6px 0; }
+    .s-hero p { opacity: .92; margin-bottom: 20px; }
+    .s-hero .s-btn { background: #fff; color: var(--c2); }
+    .s-sec { padding: 46px 24px; text-align: center; }
+    .s-sec.alt { background: #f6f7fb; }
+    .s-sec h3 { font-size: 1.4rem; margin-bottom: 20px; color: var(--c1); }
+    .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+    .s-card { background: #fff; border: 1px solid #eee; border-radius: 14px; padding: 20px 14px; box-shadow: 0 3px 10px rgba(0,0,0,.05); }
+    .s-card .ic { font-size: 2rem; }
+    .s-card h4 { margin: 6px 0 2px; font-size: 1rem; }
+    .s-card p { color: #6b7280; font-size: .85rem; }
+    .s-tile { height: 120px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 2.4rem; color: #fff; }
+    .s-foot { padding: 22px; text-align: center; background: #111827; color: #9ca3af; font-size: .85rem; }
+    @container (max-width: 560px) {
+      .s-links { display: none; }
+      .s-hero h2 { font-size: 1.5rem; }
+      .s-hero .big { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">⚡ وب‌ساز</a>
+    <nav class="nav" id="nav">
+      <a href="index.html#home">خانه</a>
+      <a href="samples.html" class="active">نمونه‌ها</a>
+      <a href="index.html#pricing">قیمت‌ها</a>
+      <a href="index.html#contact">تماس</a>
+    </nav>
+    <button id="themeBtn" class="icon-btn" aria-label="تغییر تم">🌙</button>
+    <button id="menuBtn" class="icon-btn menu-btn" aria-label="منو">☰</button>
+  </header>
+
+  <div class="pv-bar">
+    <div class="pv-info">
+      <h1 id="pvTitle"></h1>
+      <small id="pvMeta"></small>
+    </div>
+    <div class="pv-actions">
+      <div class="seg">
+        <button id="bDesk" class="on">🖥️ دسکتاپ</button>
+        <button id="bMob">📱 موبایل</button>
+      </div>
+      <a href="samples.html" class="btn btn-ghost" id="backBtn">← بازگشت</a>
+      <a id="orderTg" class="btn" target="_blank" rel="noopener">✈️ سفارش</a>
+      <a id="orderWa" class="btn btn-green" target="_blank" rel="noopener">💬 واتساپ</a>
+    </div>
+  </div>
+
+  <div class="device" id="device">
+    <div class="frame">
+      <div class="m-top">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="m-url" id="mUrl"></div>
+      </div>
+
+      <div class="site" id="site">
+        <div class="s-nav">
+          <div class="s-logo" id="sLogo"></div>
+          <div class="s-links"><span>خانه</span><span>محصولات</span><span>درباره ما</span><span>تماس</span></div>
+          <span class="s-btn">ثبت سفارش</span>
+        </div>
+
+        <div class="s-hero">
+          <div class="big" id="sIcon"></div>
+          <h2 id="sHead"></h2>
+          <p>بهترین کیفیت و خدمات را از ما بخواهید. همین حالا شروع کنید.</p>
+          <span class="s-btn">مشاهده بیشتر</span>
+        </div>
+
+        <div class="s-sec">
+          <h3>چرا ما؟</h3>
+          <div class="s-grid">
+            <div class="s-card"><div class="ic">⭐</div><h4>کیفیت بالا</h4><p>انتخاب شده با دقت</p></div>
+            <div class="s-card"><div class="ic">🚚</div><h4>ارسال سریع</h4><p>تحویل در کمترین زمان</p></div>
+            <div class="s-card"><div class="ic">💳</div><h4>پرداخت امن</h4><p>خرید مطمئن و راحت</p></div>
+            <div class="s-card"><div class="ic">🎧</div><h4>پشتیبانی</h4><p>پاسخگو در همه ساعات</p></div>
+          </div>
+        </div>
+
+        <div class="s-sec alt">
+          <h3>گالری</h3>
+          <div class="s-grid" id="sGallery"></div>
+        </div>
+
+        <div class="s-sec">
+          <h3>با ما در تماس باشید</h3>
+          <p style="color:#6b7280;margin-bottom:16px">برای مشاوره و ثبت سفارش پیام بدهید.</p>
+          <span class="s-btn">تماس با ما</span>
+        </div>
+
+        <div class="s-foot" id="sFoot"></div>
+      </div>
+    </div>
+  </div>
+
+  <button id="toTop" class="to-top" aria-label="بالا">↑</button>
+  <script src="script.js"></script>
+  <script>
+    // ===== اطلاعات تماس خودت (مثل samples.js) =====
+    const TELEGRAM_ID = 'your_telegram_id';
+    const WHATSAPP_NUM = '989120000000';
+
+    const q = new URLSearchParams(location.search);
+    const name = q.get('n') || 'نمونه سایت';
+    const icon = q.get('i') || '🌐';
+    const sub = q.get('s') || '';
+    const cat = q.get('c') || '';
+    const price = +q.get('p') || 0;
+    const hue = +q.get('h') || 250;
+    const tag = q.get('t') || '1';
+    const priceTxt = price ? price.toLocaleString('fa-IR') + ' تومان' : '';
+
+    document.title = name + ' | پیش‌نمایش';
+    document.getElementById('pvTitle').textContent = name;
+    document.getElementById('pvMeta').textContent = `${cat} › ${sub} › طرح ${tag}` + (priceTxt ? ` · ${priceTxt}` : '');
+    document.getElementById('mUrl').textContent = 'www.your-site.ir';
+    document.getElementById('sLogo').textContent = icon + ' ' + name;
+    document.getElementById('sIcon').textContent = icon;
+    document.getElementById('sHead').textContent = 'به ' + name + ' خوش آمدید';
+    document.getElementById('sFoot').textContent = '© ' + name + ' - تمام حقوق محفوظ است';
+    document.getElementById('site').style.setProperty('--h', hue);
+
+    const gal = document.getElementById('sGallery');
+    for (let i = 0; i < 6; i++) {
+      const t = document.createElement('div');
+      t.className = 's-tile';
+      t.style.background = `linear-gradient(135deg,hsl(${(hue + i * 25) % 360} 75% 55%),hsl(${(hue + i * 25 + 40) % 360} 75% 45%))`;
+      t.textContent = icon;
+      gal.appendChild(t);
+    }
+
+    // دکمه‌های دسکتاپ / موبایل
+    const device = document.getElementById('device');
+    const bDesk = document.getElementById('bDesk');
+    const bMob = document.getElementById('bMob');
+    bDesk.onclick = () => { device.classList.remove('mobile'); bDesk.classList.add('on'); bMob.classList.remove('on'); };
+    bMob.onclick = () => { device.classList.add('mobile'); bMob.classList.add('on'); bDesk.classList.remove('on'); };
+
+    // سفارش
+    const text = `سلام 👋 می‌خوام این نمونه سایت رو سفارش بدم: «${name}»` + (priceTxt ? ` با قیمت ${priceTxt}` : '');
+    document.getElementById('orderTg').href = `https://t.me/${TELEGRAM_ID}?text=${encodeURIComponent(text)}`;
+    document.getElementById('orderWa').href = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(text)}`;
+  </script>
+</body>
+</html>
