@@ -25,31 +25,161 @@
     .dots i:nth-child(3) { background: #34d399; }
     .m-url { flex: 1; background: #fff; border-radius: 99px; padding: 3px 14px; font-size: .8rem; color: #6b7280; text-align: center; }
 
-    /* خود سایت نمونه */
-    .site { --h: 250; --c1: hsl(var(--h) 75% 55%); --c2: hsl(calc(var(--h) + 40) 75% 45%); color: #1f2937; background: #fff; line-height: 1.8; }
-    .s-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 24px; border-bottom: 1px solid #eee; }
-    .s-logo { font-weight: 800; color: var(--c1); }
-    .s-links { display: flex; gap: 18px; font-size: .92rem; color: #4b5563; }
-    .s-btn { display: inline-block; padding: 9px 22px; border-radius: 10px; border: none; background: var(--c1); color: #fff; font-family: inherit; }
-    .s-hero { text-align: center; padding: 70px 24px; color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); }
-    .s-hero .big { font-size: 3.4rem; }
-    .s-hero h2 { font-size: 2rem; margin: 6px 0; }
-    .s-hero p { opacity: .92; margin-bottom: 20px; }
-    .s-hero .s-btn { background: #fff; color: var(--c2); }
-    .s-sec { padding: 46px 24px; text-align: center; }
-    .s-sec.alt { background: #f6f7fb; }
-    .s-sec h3 { font-size: 1.4rem; margin-bottom: 20px; color: var(--c1); }
-    .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
-    .s-card { background: #fff; border: 1px solid #eee; border-radius: 14px; padding: 20px 14px; box-shadow: 0 3px 10px rgba(0,0,0,.05); }
-    .s-card .ic { font-size: 2rem; }
-    .s-card h4 { margin: 6px 0 2px; font-size: 1rem; }
-    .s-card p { color: #6b7280; font-size: .85rem; }
-    .s-tile { height: 120px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 2.4rem; color: #fff; }
-    .s-foot { padding: 22px; text-align: center; background: #111827; color: #9ca3af; font-size: .85rem; }
-    @container (max-width: 560px) {
-      .s-links { display: none; }
-      .s-hero h2 { font-size: 1.5rem; }
-      .s-hero .big { font-size: 2.6rem; }
+    /* ===== پایه مشترک سایت نمونه ===== */
+    .site { --a: hsl(var(--h) 70% 50%); --b: hsl(calc(var(--h) + 45) 70% 42%); --soft: hsl(var(--h) 80% 96%);
+      color: #1f2937; background: #fff; line-height: 1.8; font-family: Vazirmatn, Tahoma, sans-serif; text-align: right; }
+    .site * { box-sizing: border-box; margin: 0; padding: 0; }
+    .site .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 26px; }
+    .site .logo { font-weight: 800; color: var(--a); font-size: 1.1rem; }
+    .site .links { display: flex; gap: 18px; font-size: .9rem; color: #6b7280; }
+    .site .sb { display: inline-block; padding: 10px 24px; border-radius: 10px; background: var(--a); color: #fff; font-weight: bold; font-size: .95rem; }
+    .site .sec { padding: 50px 26px; }
+    .site .sec h3 { font-size: 1.5rem; margin-bottom: 22px; }
+    .site .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+    .site .card { padding: 22px 16px; text-align: center; }
+    .site .card .ic { font-size: 2.2rem; }
+    .site .card h4 { margin: 6px 0 2px; }
+    .site .card p { font-size: .85rem; color: #6b7280; }
+    .site .foot { padding: 22px; text-align: center; font-size: .85rem; }
+
+    /* ۰ کلاسیک */
+    .L0 .nav { border-bottom: 1px solid #eee; }
+    .L0 .hero { text-align: center; padding: 84px 24px; color: #fff; background: linear-gradient(135deg, var(--a), var(--b)); }
+    .L0 .hero .big { font-size: 3.4rem; }
+    .L0 .hero h2 { font-size: 2rem; margin: 6px 0; }
+    .L0 .hero p { opacity: .92; margin-bottom: 20px; }
+    .L0 .hero .sb { background: #fff; color: var(--b); }
+    .L0 .sec { text-align: center; }
+    .L0 .sec h3 { color: var(--a); }
+    .L0 .card { background: #fff; border: 1px solid #eee; border-radius: 14px; box-shadow: 0 3px 12px rgba(0,0,0,.06); }
+    .L0 .band { background: var(--soft); text-align: center; padding: 40px 20px; }
+    .L0 .band h3 { margin-bottom: 14px; }
+    .L0 .foot { background: #111827; color: #9ca3af; }
+
+    /* ۱ دو ستونه */
+    .L1 .nav { background: var(--soft); }
+    .L1 .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; align-items: center; padding: 60px 30px; background: var(--soft); }
+    .L1 .pill { display: inline-block; background: var(--a); color: #fff; padding: 2px 14px; border-radius: 99px; font-size: .8rem; margin-bottom: 10px; }
+    .L1 .hero h2 { font-size: 2.2rem; line-height: 1.4; margin-bottom: 10px; }
+    .L1 .hero p { color: #6b7280; margin-bottom: 18px; }
+    .L1 .art { display: flex; justify-content: center; }
+    .L1 .blob { width: 230px; height: 230px; display: flex; align-items: center; justify-content: center; font-size: 6rem; color: #fff; background: linear-gradient(135deg, var(--a), var(--b)); border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%; box-shadow: 0 20px 50px rgba(0,0,0,.2); }
+    .L1 .stats { display: flex; justify-content: space-around; padding: 26px; background: var(--a); color: #fff; text-align: center; }
+    .L1 .stats b { display: block; font-size: 1.6rem; }
+    .L1 .card { background: var(--soft); border-radius: 18px; }
+    .L1 .foot { background: var(--soft); color: #6b7280; }
+
+    /* ۲ لوکس تیره */
+    .L2 { background: #0b0b0d; color: #e8e2d0; font-family: Georgia, 'Times New Roman', Vazirmatn, serif; }
+    .L2 .nav { border-bottom: 1px solid #2a2a2e; }
+    .L2 .logo { color: #d4af37; letter-spacing: 1px; }
+    .L2 .links { color: #a39b85; }
+    .L2 .hero { text-align: center; padding: 90px 24px; }
+    .L2 .hero .box { display: inline-block; border: 1px solid #d4af37; padding: 40px 50px; }
+    .L2 .hero .big { font-size: 2.6rem; }
+    .L2 .hero h2 { font-weight: 400; font-size: 1.8rem; color: #d4af37; margin: 8px 0; }
+    .L2 .hero p { color: #a39b85; margin-bottom: 20px; }
+    .L2 .sb { background: transparent; border: 1px solid #d4af37; color: #d4af37; border-radius: 0; }
+    .L2 .sec { max-width: 720px; margin: auto; }
+    .L2 .sec h3 { text-align: center; color: #d4af37; font-weight: 400; }
+    .L2 .row { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; }
+    .L2 .row i { flex: 1; border-bottom: 1px dotted #5a5546; }
+    .L2 .row b { color: #d4af37; font-weight: 400; font-size: .9rem; }
+    .L2 .foot { border-top: 1px solid #2a2a2e; color: #6f6a5b; }
+
+    /* ۳ مجله‌ای */
+    .L3 { background: #faf6ee; font-family: Georgia, Vazirmatn, serif; }
+    .L3 .nav { border-bottom: 3px double #1f2937; }
+    .L3 .logo { color: #1f2937; font-size: 1.4rem; }
+    .L3 .hero { padding: 60px 30px 40px; border-bottom: 1px solid #1f2937; }
+    .L3 .hero small { letter-spacing: 2px; color: var(--a); font-weight: bold; }
+    .L3 .hero h2 { font-size: 3rem; line-height: 1.3; margin: 8px 0; }
+    .L3 .hero p { color: #6b7280; max-width: 520px; }
+    .L3 .arts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; }
+    .L3 article { padding: 24px; border-bottom: 1px solid #d8d1c0; border-left: 1px solid #d8d1c0; }
+    .L3 article small { font-size: 2rem; color: var(--a); font-weight: bold; }
+    .L3 article h4 { font-size: 1.15rem; margin: 4px 0; }
+    .L3 article p { color: #6b7280; font-size: .9rem; }
+    .L3 .foot { color: #6b7280; }
+
+    /* ۴ شاد و پررنگ */
+    .L4 { background: #fde047; font-family: Vazirmatn, Tahoma, sans-serif; }
+    .L4 .nav { background: #fff; border-bottom: 4px solid #000; }
+    .L4 .logo { color: #000; }
+    .L4 .links { color: #000; font-weight: bold; }
+    .L4 .hero { padding: 60px 26px; }
+    .L4 .hero h2 { font-size: 2.6rem; line-height: 1.3; background: #fff; border: 4px solid #000; box-shadow: 8px 8px 0 #000; display: inline-block; padding: 10px 22px; transform: rotate(-1.5deg); }
+    .L4 .hero p { margin: 22px 0 16px; font-weight: bold; }
+    .L4 .sb { background: var(--a); border: 4px solid #000; box-shadow: 5px 5px 0 #000; border-radius: 0; }
+    .L4 .card { border: 4px solid #000; box-shadow: 6px 6px 0 #000; background: #fff; }
+    .L4 .card:nth-child(2) { background: #a5f3fc; }
+    .L4 .card:nth-child(3) { background: #fbcfe8; }
+    .L4 .card:nth-child(4) { background: #bbf7d0; }
+    .L4 .foot { background: #000; color: #fde047; }
+
+    /* ۵ داشبوردی */
+    .L5 .wrap { display: grid; grid-template-columns: 190px 1fr; min-height: 560px; }
+    .L5 .side { background: linear-gradient(180deg, var(--a), var(--b)); color: #fff; padding: 22px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .L5 .side .logo { color: #fff; margin-bottom: 14px; }
+    .L5 .side span { padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.12); font-size: .9rem; }
+    .L5 .side span:first-of-type { background: rgba(255,255,255,.3); font-weight: bold; }
+    .L5 .main { background: #f5f6fa; padding: 22px; }
+    .L5 .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .L5 .top h2 { font-size: 1.4rem; }
+    .L5 .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+    .L5 .kpis div { background: #fff; border-radius: 14px; padding: 14px; text-align: center; }
+    .L5 .kpis b { display: block; font-size: 1.4rem; color: var(--a); }
+    .L5 .kpis small { color: #6b7280; }
+    .L5 .card { background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.05); text-align: right; display: flex; gap: 10px; align-items: center; }
+    .L5 .grid4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .L5 .foot { background: #f5f6fa; color: #6b7280; }
+
+    /* ۶ شیشه‌ای */
+    .L6 { background: linear-gradient(160deg, hsl(var(--h) 60% 12%), hsl(calc(var(--h) + 60) 60% 22%)); color: #fff; position: relative; overflow: hidden; }
+    .L6::before, .L6::after { content: ''; position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; }
+    .L6::before { width: 300px; height: 300px; background: var(--a); top: -80px; right: -60px; }
+    .L6::after { width: 260px; height: 260px; background: var(--b); bottom: 120px; left: -80px; }
+    .L6 > * { position: relative; z-index: 1; }
+    .L6 .links { color: #cbd5e1; }
+    .L6 .logo { color: #fff; }
+    .L6 .hero { text-align: center; padding: 80px 24px 50px; }
+    .L6 .hero .big { font-size: 3.2rem; }
+    .L6 .hero h2 { font-size: 2.1rem; margin: 6px 0; }
+    .L6 .hero p { color: #cbd5e1; margin-bottom: 20px; }
+    .L6 .sb { background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4); backdrop-filter: blur(8px); }
+    .L6 .sec { text-align: center; }
+    .L6 .card { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 20px; backdrop-filter: blur(12px); }
+    .L6 .card p { color: #cbd5e1; }
+    .L6 .foot { color: #94a3b8; }
+
+    /* ۷ مینیمال */
+    .L7 { font-family: Vazirmatn, Tahoma, sans-serif; }
+    .L7 .nav { padding: 22px 30px; }
+    .L7 .logo { color: #111; font-weight: 600; }
+    .L7 .links span { border-bottom: 1px solid transparent; }
+    .L7 .links span:first-child { border-color: #111; color: #111; }
+    .L7 .hero { padding: 70px 30px 40px; }
+    .L7 .hero h2 { font-size: 3.4rem; font-weight: 300; line-height: 1.3; max-width: 620px; }
+    .L7 .hero p { color: #6b7280; margin: 14px 0 22px; max-width: 420px; }
+    .L7 .sb { background: #111; border-radius: 99px; }
+    .L7 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; padding: 0 30px 50px; }
+    .L7 .tile { height: 200px; border-radius: 20px; padding: 18px; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+    .L7 .tile span { position: absolute; top: 12px; left: 16px; font-size: 2.4rem; opacity: .9; }
+    .L7 .tile b { font-weight: 500; }
+    .L7 .tile small { opacity: .85; }
+    .L7 .foot { color: #9ca3af; border-top: 1px solid #eee; }
+
+    /* موبایل */
+    @container (max-width: 620px) {
+      .site .links { display: none; }
+      .L1 .hero { grid-template-columns: 1fr; text-align: center; }
+      .L1 .blob { width: 160px; height: 160px; font-size: 4rem; }
+      .L2 .hero .box { padding: 26px 18px; }
+      .L3 .hero h2, .L7 .hero h2 { font-size: 2.1rem; }
+      .L4 .hero h2 { font-size: 1.8rem; }
+      .L5 .wrap { grid-template-columns: 1fr; }
+      .L5 .side { flex-direction: row; flex-wrap: wrap; }
+      .L5 .kpis { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -77,7 +207,7 @@
         <button id="bDesk" class="on">🖥️ دسکتاپ</button>
         <button id="bMob">📱 موبایل</button>
       </div>
-      <a href="samples.html" class="btn btn-ghost" id="backBtn">← بازگشت</a>
+      <a href="javascript:history.back()" class="btn btn-ghost">← بازگشت</a>
       <a id="orderTg" class="btn" target="_blank" rel="noopener">✈️ سفارش</a>
       <a id="orderWa" class="btn btn-green" target="_blank" rel="noopener">💬 واتساپ</a>
     </div>
@@ -89,51 +219,14 @@
         <div class="dots"><i></i><i></i><i></i></div>
         <div class="m-url" id="mUrl"></div>
       </div>
-
-      <div class="site" id="site">
-        <div class="s-nav">
-          <div class="s-logo" id="sLogo"></div>
-          <div class="s-links"><span>خانه</span><span>محصولات</span><span>درباره ما</span><span>تماس</span></div>
-          <span class="s-btn">ثبت سفارش</span>
-        </div>
-
-        <div class="s-hero">
-          <div class="big" id="sIcon"></div>
-          <h2 id="sHead"></h2>
-          <p>بهترین کیفیت و خدمات را از ما بخواهید. همین حالا شروع کنید.</p>
-          <span class="s-btn">مشاهده بیشتر</span>
-        </div>
-
-        <div class="s-sec">
-          <h3>چرا ما؟</h3>
-          <div class="s-grid">
-            <div class="s-card"><div class="ic">⭐</div><h4>کیفیت بالا</h4><p>انتخاب شده با دقت</p></div>
-            <div class="s-card"><div class="ic">🚚</div><h4>ارسال سریع</h4><p>تحویل در کمترین زمان</p></div>
-            <div class="s-card"><div class="ic">💳</div><h4>پرداخت امن</h4><p>خرید مطمئن و راحت</p></div>
-            <div class="s-card"><div class="ic">🎧</div><h4>پشتیبانی</h4><p>پاسخگو در همه ساعات</p></div>
-          </div>
-        </div>
-
-        <div class="s-sec alt">
-          <h3>گالری</h3>
-          <div class="s-grid" id="sGallery"></div>
-        </div>
-
-        <div class="s-sec">
-          <h3>با ما در تماس باشید</h3>
-          <p style="color:#6b7280;margin-bottom:16px">برای مشاوره و ثبت سفارش پیام بدهید.</p>
-          <span class="s-btn">تماس با ما</span>
-        </div>
-
-        <div class="s-foot" id="sFoot"></div>
-      </div>
+      <div id="site"></div>
     </div>
   </div>
 
   <button id="toTop" class="to-top" aria-label="بالا">↑</button>
   <script src="script.js"></script>
   <script>
-    // ===== اطلاعات تماس خودت (مثل samples.js) =====
+    // ===== اطلاعات تماس خودت =====
     const TELEGRAM_ID = 'your_telegram_id';
     const WHATSAPP_NUM = '989120000000';
 
@@ -143,28 +236,81 @@
     const sub = q.get('s') || '';
     const cat = q.get('c') || '';
     const price = +q.get('p') || 0;
-    const hue = +q.get('h') || 250;
-    const tag = q.get('t') || '1';
+    const tag = +q.get('t') || 1;
     const priceTxt = price ? price.toLocaleString('fa-IR') + ' تومان' : '';
+
+    // سبک و رنگ از روی اسم نمونه ساخته میشه (ثابت و متفاوت برای هر نمونه)
+    function hash(s) { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h; }
+    const L = (hash(name) + tag) % 8;
+    const hue = (hash(name + sub) * 7 + tag * 53) % 360;
+    const STYLES = ['کلاسیک', 'دو ستونه', 'لوکس تیره', 'مجله‌ای', 'شاد و پررنگ', 'داشبوردی', 'شیشه‌ای', 'مینیمال'];
+
+    // محتوای هر دسته
+    const CONTENT = {
+      'تجاری': { labels: ['پرفروش‌ترین‌ها', 'تازه‌های فروشگاه', 'تخفیف‌های ویژه', 'پیشنهاد ما'], details: ['از ۴۵۰٬۰۰۰ تومان', 'از ۳۲۰٬۰۰۰ تومان', 'تا ۴۰٪ تخفیف', 'انتخاب مشتریان'], sec: 'محصولات', cta: 'خرید آنلاین', head: 'جدیدترین محصولات را کشف کنید', stats: [['۲۵۰۰+', 'محصول'], ['۱۲۰۰۰', 'مشتری'], ['۴.۹', 'امتیاز']] },
+      'شرکتی': { labels: ['مشاوره تخصصی', 'پروژه‌های موفق', 'تیم حرفه‌ای', 'همکاری با ما'], details: ['تحلیل نیاز شما', 'بیش از ۲۰۰ پروژه', 'متخصصان باتجربه', 'مشارکت بلندمدت'], sec: 'خدمات شرکت', cta: 'درخواست مشاوره', head: 'شریک مطمئن کسب‌وکار شما', stats: [['۱۵ سال', 'تجربه'], ['۲۰۰+', 'پروژه'], ['۵۰', 'همکار']] },
+      'شخصی': { labels: ['درباره من', 'نمونه‌کارها', 'مهارت‌ها', 'ارتباط با من'], details: ['داستان و مسیر من', 'پروژه‌های منتخب', 'ابزارها و تخصص‌ها', 'همین حالا پیام بده'], sec: 'بخش‌های من', cta: 'ارتباط با من', head: 'سلام، من اینجا کارهام رو نشون میدم', stats: [['۵+', 'سال تجربه'], ['۴۰', 'پروژه'], ['۳۰', 'مشتری']] },
+      'رستوران و کافه': { labels: ['غذای ویژه', 'پیشنهاد سرآشپز', 'دسر و شیرینی', 'نوشیدنی‌ها'], details: ['۲۸۰٬۰۰۰ تومان', '۳۵۰٬۰۰۰ تومان', '۹۰٬۰۰۰ تومان', '۶۰٬۰۰۰ تومان'], sec: 'منوی ما', cta: 'رزرو میز', head: 'طعمی که فراموش نمی‌کنید', stats: [['۱۰ سال', 'سابقه'], ['۸۰+', 'نوع غذا'], ['۴.۸', 'رضایت']] },
+      'آموزشی': { labels: ['دوره مقدماتی', 'دوره پیشرفته', 'کارگاه عملی', 'مشاوره تحصیلی'], details: ['شروع از صفر', 'سطح حرفه‌ای', 'پروژه‌محور', 'رایگان'], sec: 'دوره‌ها', cta: 'ثبت‌نام', head: 'یادگیری رو از امروز شروع کن', stats: [['۵۰+', 'دوره'], ['۸۰۰۰', 'دانشجو'], ['۴۰', 'مدرس']] },
+      'خدماتی': { labels: ['خدمت اصلی', 'رزرو نوبت', 'پکیج ویژه', 'مشاوره رایگان'], details: ['با بهترین کیفیت', 'آنلاین و سریع', 'صرفه‌جویی بیشتر', 'بدون هزینه'], sec: 'خدمات', cta: 'رزرو نوبت', head: 'خدماتی که به آن اعتماد می‌کنید', stats: [['۱۰۰۰+', 'مشتری'], ['۷ روز', 'پشتیبانی'], ['۹۸٪', 'رضایت']] }
+    };
+    const C = CONTENT[cat] || CONTENT['خدماتی'];
+    const items = C.labels.map((l, i) => ({ t: l, d: C.details[i] }));
+    const nums = ['۰۱', '۰۲', '۰۳', '۰۴'];
+
+    const nav = `<div class="nav"><div class="logo">${icon} ${name}</div><div class="links"><span>خانه</span><span>${sub || 'خدمات'}</span><span>درباره</span><span>تماس</span></div><span class="sb">${C.cta}</span></div>`;
+    const foot = `<div class="foot">© ${name} - تمام حقوق محفوظ است</div>`;
+    const cards = items.map(it => `<div class="card"><div class="ic">${icon}</div><h4>${it.t}</h4><p>${it.d}</p></div>`).join('');
+
+    const LAYOUTS = [
+      // 0 کلاسیک
+      () => `${nav}
+        <div class="hero"><div class="big">${icon}</div><h2>${C.head}</h2><p>${name} | ${sub}</p><span class="sb">${C.cta}</span></div>
+        <div class="sec"><h3>${C.sec}</h3><div class="grid4">${cards}</div></div>
+        <div class="band"><h3>آماده شروع هستید؟</h3><span class="sb">${C.cta}</span></div>${foot}`,
+      // 1 دو ستونه
+      () => `${nav}
+        <div class="hero"><div class="txt"><span class="pill">${cat} / ${sub}</span><h2>${C.head}</h2><p>${name}؛ تجربه‌ای متفاوت با کیفیت بالا.</p><span class="sb">${C.cta}</span></div><div class="art"><div class="blob">${icon}</div></div></div>
+        <div class="stats">${C.stats.map(s => `<div><b>${s[0]}</b>${s[1]}</div>`).join('')}</div>
+        <div class="sec"><h3>${C.sec}</h3><div class="grid4">${cards}</div></div>${foot}`,
+      // 2 لوکس
+      () => `${nav}
+        <div class="hero"><div class="box"><div class="big">${icon}</div><h2>${name}</h2><p>${C.head}</p><span class="sb">${C.cta}</span></div></div>
+        <div class="sec"><h3>${C.sec}</h3>${items.map(it => `<div class="row"><span>${it.t}</span><i></i><b>${it.d}</b></div>`).join('')}</div>${foot}`,
+      // 3 مجله‌ای
+      () => `${nav}
+        <div class="hero"><small>${cat} · ${sub}</small><h2>${C.head}</h2><p>${name}؛ روایت و تجربه‌ای خواندنی.</p></div>
+        <div class="arts">${items.map((it, i) => `<article><small>${nums[i]}</small><h4>${it.t}</h4><p>${it.d}</p></article>`).join('')}</div>${foot}`,
+      // 4 شاد
+      () => `${nav}
+        <div class="hero"><h2>${icon} ${name}</h2><p>${C.head}</p><span class="sb">${C.cta}</span></div>
+        <div class="sec"><div class="grid4">${cards}</div></div>${foot}`,
+      // 5 داشبوردی
+      () => `<div class="wrap">
+        <div class="side"><div class="logo">${icon} ${name}</div><span>داشبورد</span><span>${sub || 'خدمات'}</span><span>گزارش‌ها</span><span>تنظیمات</span></div>
+        <div class="main"><div class="top"><h2>${C.head}</h2><span class="sb">${C.cta}</span></div>
+          <div class="kpis">${C.stats.map(s => `<div><b>${s[0]}</b><small>${s[1]}</small></div>`).join('')}</div>
+          <div class="grid4">${items.map(it => `<div class="card"><div class="ic">${icon}</div><div><h4>${it.t}</h4><p>${it.d}</p></div></div>`).join('')}</div>
+        </div></div>${foot}`,
+      // 6 شیشه‌ای
+      () => `${nav}
+        <div class="hero"><div class="big">${icon}</div><h2>${name}</h2><p>${C.head}</p><span class="sb">${C.cta}</span></div>
+        <div class="sec"><div class="grid4">${cards}</div></div>${foot}`,
+      // 7 مینیمال
+      () => `${nav}
+        <div class="hero"><h2>${C.head}</h2><p>${name} · ${sub}</p><span class="sb">${C.cta}</span></div>
+        <div class="tiles">${items.map((it, i) => `<div class="tile" style="background:linear-gradient(135deg,hsl(${(hue + i * 35) % 360} 70% 55%),hsl(${(hue + i * 35 + 40) % 360} 70% 42%))"><span>${icon}</span><b>${it.t}</b><small>${it.d}</small></div>`).join('')}</div>${foot}`
+    ];
+
+    const site = document.getElementById('site');
+    site.className = 'site L' + L;
+    site.style.setProperty('--h', hue);
+    site.innerHTML = LAYOUTS[L]();
 
     document.title = name + ' | پیش‌نمایش';
     document.getElementById('pvTitle').textContent = name;
-    document.getElementById('pvMeta').textContent = `${cat} › ${sub} › طرح ${tag}` + (priceTxt ? ` · ${priceTxt}` : '');
+    document.getElementById('pvMeta').textContent = `${cat} › ${sub} › سبک ${STYLES[L]}` + (priceTxt ? ` · ${priceTxt}` : '');
     document.getElementById('mUrl').textContent = 'www.your-site.ir';
-    document.getElementById('sLogo').textContent = icon + ' ' + name;
-    document.getElementById('sIcon').textContent = icon;
-    document.getElementById('sHead').textContent = 'به ' + name + ' خوش آمدید';
-    document.getElementById('sFoot').textContent = '© ' + name + ' - تمام حقوق محفوظ است';
-    document.getElementById('site').style.setProperty('--h', hue);
-
-    const gal = document.getElementById('sGallery');
-    for (let i = 0; i < 6; i++) {
-      const t = document.createElement('div');
-      t.className = 's-tile';
-      t.style.background = `linear-gradient(135deg,hsl(${(hue + i * 25) % 360} 75% 55%),hsl(${(hue + i * 25 + 40) % 360} 75% 45%))`;
-      t.textContent = icon;
-      gal.appendChild(t);
-    }
 
     // دکمه‌های دسکتاپ / موبایل
     const device = document.getElementById('device');
