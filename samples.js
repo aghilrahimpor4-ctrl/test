@@ -146,9 +146,21 @@ function renderGrid() {
         <div class="price">${fmt(price)}</div>
         <div class="row">
           <span class="tag">طرح ${x.i + 1}</span>
-          <button class="btn order-btn">سفارش</button>
+          <div class="btns">
+            <a class="btn btn-ghost view-btn">مشاهده</a>
+            <button class="btn order-btn">سفارش</button>
+          </div>
         </div>
       </div>`;
+
+    const params = new URLSearchParams({
+      n: x.name, i: x.sub.icon, s: x.sub.title,
+      c: DATA[state.cat].title, p: price, h: hue, t: x.i + 1
+    });
+    const url = 'preview.html?' + params.toString();
+    card.querySelector('.view-btn').href = url;
+    card.querySelector('.thumb').style.cursor = 'pointer';
+    card.querySelector('.thumb').onclick = () => { location.href = url; };
     card.querySelector('.order-btn').onclick = () => openModal(x.name, price);
     grid.appendChild(card);
   });
