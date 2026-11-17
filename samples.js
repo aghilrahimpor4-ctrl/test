@@ -115,12 +115,24 @@ function renderChips() {
   });
 }
 
+// سایت‌های کامل که ساخته شدن (بقیه فعلاً از preview.html استفاده می‌کنن)
+const READY = {
+  business: {
+    clothing: 'shop.html?k=clothing', gold: 'shop.html?k=gold', accessory: 'shop.html?k=accessory',
+    digital: 'shop.html?k=digital', beauty: 'shop.html?k=beauty', home: 'shop.html?k=home'
+  },
+  food: {
+    restaurant: 'restaurant.html?k=restaurant', cafe: 'restaurant.html?k=cafe',
+    fastfood: 'restaurant.html?k=fastfood', bakery: 'restaurant.html?k=bakery'
+  }
+};
+
 function renderGrid() {
   const subs = DATA[state.cat].subs;
   let list = [];
   Object.entries(subs).forEach(([key, s]) => {
     if (state.sub !== 'all' && state.sub !== key) return;
-    s.items.forEach((name, i) => list.push({ name, sub: s, i }));
+    s.items.forEach((name, i) => list.push({ name, sub: s, key, i }));
   });
   if (state.q) list = list.filter(x => x.name.includes(state.q) || x.sub.title.includes(state.q));
 
@@ -135,6 +147,18 @@ function renderGrid() {
   list.forEach((x, n) => {
     const hue = (n * 47 + 200) % 360;
     const price = PRICES[state.cat] || 2000000;
+    const ready = READY[state.cat] && READY[state.cat][x.key];
+
+    let url;
+    if (ready) {
+      url = ready + '&' + new URLSearchParams({ n: x.name, h: hue, p: price }).toString();
+    } else {
+      url = 'preview.html?' + new URLSearchParams({
+        n: x.name, i: x.sub.icon, s: x.sub.title,
+        c: DATA[state.cat].title, p: price, h: hue, t: x.i + 1
+      }).toString();
+    }
+
     const card = document.createElement('div');
     card.className = 'sample';
     card.style.animationDelay = `${Math.min(n * 30, 400)}ms`;
@@ -145,7 +169,7 @@ function renderGrid() {
         <small>${x.sub.title}</small>
         <div class="price">${fmt(price)}</div>
         <div class="row">
-          <span class="tag">طرح ${x.i + 1}</span>
+          <span class="tag">${ready ? '✅ سایت کامل' : 'طرح ' + (x.i + 1)}</span>
           <div class="btns">
             <a class="btn btn-ghost view-btn">مشاهده</a>
             <button class="btn order-btn">سفارش</button>
@@ -153,11 +177,6 @@ function renderGrid() {
         </div>
       </div>`;
 
-    const params = new URLSearchParams({
-      n: x.name, i: x.sub.icon, s: x.sub.title,
-      c: DATA[state.cat].title, p: price, h: hue, t: x.i + 1
-    });
-    const url = 'preview.html?' + params.toString();
     card.querySelector('.view-btn').href = url;
     card.querySelector('.thumb').style.cursor = 'pointer';
     card.querySelector('.thumb').onclick = () => { location.href = url; };
