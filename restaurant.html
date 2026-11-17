@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رستوران و کافه</title>
+<style>
+:root{--bar:46px;--bg:#14100c;--bg2:#1d1812;--tx:#f4ead5;--mu:#b3a78f;--a:#c8553d;--bd:#33291e;--ff:Georgia,Vazirmatn,serif;--on:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ff);background:var(--bg);color:var(--tx);line-height:1.8;padding-bottom:70px}
+button,input,select{font-family:inherit}
+a{color:inherit;text-decoration:none}
+
+.top{position:sticky;top:var(--bar);z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 26px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.brand{font-weight:800;font-size:1.3rem;color:var(--a)}
+.top nav{display:flex;gap:20px;font-size:.95rem;color:var(--mu)}
+.top nav a:hover{color:var(--a)}
+
+.hero{text-align:center;padding:80px 20px;background:radial-gradient(circle at 50% 0%,var(--bg2),var(--bg))}
+.hero .em{font-size:5rem}
+.hero h1{font-size:2.6rem;margin:6px 0}
+.hero p{color:var(--mu);margin-bottom:22px}
+.hero .bt{display:inline-block;margin:4px;padding:11px 28px;border-radius:12px;background:var(--a);color:var(--on);font-weight:bold}
+.hero .bt.o{background:transparent;border:2px solid var(--a);color:var(--a)}
+
+section{max-width:1000px;margin:auto;padding:46px 20px}
+section h2{text-align:center;font-size:1.6rem;margin-bottom:20px;color:var(--a)}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.tab{padding:8px 20px;border-radius:99px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);cursor:pointer}
+.tab.on{background:var(--a);color:var(--on);border-color:var(--a)}
+
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.it{display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg2);border:1px solid var(--bd);border-radius:16px}
+.it .e{font-size:2.6rem;width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:14px}
+.it .d{flex:1}
+.it .d h4{font-size:1rem}
+.it .d small{color:var(--mu)}
+.it .pr{color:var(--a);font-weight:bold;font-size:.92rem}
+.it button{width:36px;height:36px;border:none;border-radius:50%;background:var(--a);color:var(--on);font-size:1.3rem;cursor:pointer}
+
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;text-align:center}
+.info div{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.info b{display:block;color:var(--a);margin-bottom:4px}
+
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;margin:auto}
+.form input,.form select{padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+.form .full{grid-column:1/-1}
+.form button{padding:13px;border:none;border-radius:12px;background:var(--a);color:var(--on);font-size:1rem;cursor:pointer}
+
+.foot{text-align:center;padding:26px;color:var(--mu);border-top:1px solid var(--bd);font-size:.9rem}
+
+.obar{position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;align-items:center;justify-content:space-between;padding:12px 22px;background:var(--a);color:var(--on)}
+.obar.on{display:flex}
+.obar button{padding:8px 22px;border:none;border-radius:10px;background:var(--on);color:var(--a);font-weight:bold;cursor:pointer}
+
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:200;font-size:.92rem;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+@media(max-width:640px){.top nav{display:none}.hero h1{font-size:1.9rem}.form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand" id="brand"></div>
+  <nav><a href="#menu">منو</a><a href="#about">درباره ما</a><a href="#book" id="navBook">رزرو</a></nav>
+</header>
+
+<div class="hero">
+  <div class="em" id="hEm"></div>
+  <h1 id="hTitle"></h1>
+  <p id="hTag"></p>
+  <a href="#menu" class="bt">مشاهده منو</a>
+  <a href="#book" class="bt o" id="heroBook"></a>
+</div>
+
+<section id="menu">
+  <h2>منوی ما</h2>
+  <div class="tabs" id="tabs"></div>
+  <div class="menu" id="menuList"></div>
+</section>
+
+<section id="about">
+  <h2>درباره ما</h2>
+  <div class="info">
+    <div><b>🕒 ساعت کاری</b>همه روزه ۱۰ صبح تا ۱۱ شب</div>
+    <div><b>📍 آدرس</b>تهران، خیابان نمونه، پلاک ۱۲</div>
+    <div><b>📞 تلفن</b>۰۲۱-۱۲۳۴۵۶۷۸</div>
+  </div>
+</section>
+
+<section id="book">
+  <h2 id="formTitle"></h2>
+  <form class="form" id="form">
+    <input id="fName" placeholder="نام و نام خانوادگی" required>
+    <input id="fPhone" placeholder="شماره تماس" required>
+    <input id="fDate" type="date" required>
+    <select id="fCount"><option>۱ نفر</option><option>۲ نفر</option><option selected>۴ نفر</option><option>۶ نفر</option><option>۸ نفر و بیشتر</option></select>
+    <button class="full" id="fBtn" type="submit"></button>
+  </form>
+</section>
+
+<footer class="foot" id="foot"></footer>
+
+<div class="obar" id="obar"><span id="oinfo"></span><button id="obtn">ثبت سفارش</button></div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const R = {
+  restaurant: { title: 'رستوران سنتی', tag: 'طعم اصیل ایرانی در فضایی دلنشین', hero: '🍛', form: 'رزرو میز', btn: 'ثبت رزرو',
+    theme: { bg: '#14100c', bg2: '#1d1812', tx: '#f4ead5', mu: '#b3a78f', a: '#c8553d', bd: '#33291e', ff: "Georgia,Vazirmatn,serif", on: '#fff' },
+    cats: ['پیش‌غذا','غذای اصلی','دسر','نوشیدنی'], items: [
+    ['پیش‌غذا','🥣','سوپ جو',85000,'سوپ سنتی با سبزیجات تازه'],['پیش‌غذا','🥗','سالاد شیرازی',75000,'خیار، گوجه و پیاز'],
+    ['غذای اصلی','🍢','چلوکباب کوبیده',320000,'دو سیخ کباب با برنج ایرانی'],['غذای اصلی','🍗','جوجه‌کباب',290000,'مرغ زعفرانی با گوجه کبابی'],['غذای اصلی','🍲','قورمه‌سبزی',260000,'با گوشت و لوبیا'],
+    ['دسر','🍮','فرنی',70000,'با عطر گلاب'],['دسر','🍨','بستنی سنتی',90000,'زعفرانی با پسته'],
+    ['نوشیدنی','🥛','دوغ محلی',45000,'با نعنای تازه'],['نوشیدنی','🍵','چای سنتی',35000,'دم‌کرده']] },
+  cafe: { title: 'کافه', tag: 'قهوه‌ای که روزت رو می‌سازه', hero: '☕', form: 'رزرو میز', btn: 'ثبت رزرو',
+    theme: { bg: '#f6efe6', bg2: '#ffffff', tx: '#3b2a20', mu: '#8b7565', a: '#8a5a3b', bd: '#e5d8c8', ff: "Georgia,Vazirmatn,serif", on: '#fff' },
+    cats: ['قهوه','چای و دمنوش','کیک و شیرینی','صبحانه'], items: [
+    ['قهوه','☕','اسپرسو',65000,'دو شات قهوه تازه'],['قهوه','☕','لاته',95000,'با شیر بخارداده'],['قهوه','🧊','آیس‌آمریکانو',90000,'سرد و خنک'],
+    ['چای و دمنوش','🍵','دمنوش آرامش',70000,'بابونه و بهارنارنج'],['چای و دمنوش','🫖','چای ماسالا',80000,'با ادویه هندی'],
+    ['کیک و شیرینی','🍰','چیزکیک',130000,'با سس توت‌فرنگی'],['کیک و شیرینی','🥐','کروسان',85000,'تازه و کره‌ای'],
+    ['صبحانه','🍳','املت سنتی',150000,'با نان تازه'],['صبحانه','🥞','پنکیک عسل',140000,'با موز و عسل']] },
+  fastfood: { title: 'فست‌فود', tag: 'سریع، داغ و خوشمزه', hero: '🍔', form: 'سفارش تلفنی', btn: 'درخواست تماس',
+    theme: { bg: '#fff7d6', bg2: '#ffffff', tx: '#1a1a1a', mu: '#6b6b6b', a: '#e11d48', bd: '#1a1a1a', ff: "Vazirmatn,Tahoma,sans-serif", on: '#fff' },
+    cats: ['برگر','پیتزا','ساندویچ','نوشیدنی و سیب‌زمینی'], items: [
+    ['برگر','🍔','چیزبرگر',210000,'۱۵۰ گرم گوشت و پنیر'],['برگر','🍔','دبل برگر',290000,'دو لایه گوشت'],
+    ['پیتزا','🍕','پیتزا پپرونی',320000,'خمیر نازک'],['پیتزا','🍕','پیتزا قارچ و مرغ',300000,'با پنیر فراوان'],
+    ['ساندویچ','🌭','هات‌داگ',140000,'با سس مخصوص'],['ساندویچ','🥪','ساندویچ فیله مرغ',190000,'سوخاری و ترد'],
+    ['نوشیدنی و سیب‌زمینی','🍟','سیب‌زمینی سرخ‌کرده',85000,'ترد و داغ'],['نوشیدنی و سیب‌زمینی','🥤','نوشابه',30000,'خنک']] },
+  bakery: { title: 'قنادی و نانوایی', tag: 'شیرینی تازه، هر روز', hero: '🧁', form: 'سفارش کیک', btn: 'ثبت سفارش',
+    theme: { bg: '#fff1f5', bg2: '#ffffff', tx: '#4a2c3a', mu: '#9a7385', a: '#ec4899', bd: '#fbcfe8', ff: "Vazirmatn,Tahoma,sans-serif", on: '#fff' },
+    cats: ['کیک','شیرینی','نان','شکلات'], items: [
+    ['کیک','🎂','کیک تولد شکلاتی',650000,'سفارشی با طرح دلخواه'],['کیک','🍰','کیک وانیلی',480000,'نرم و خامه‌ای'],
+    ['شیرینی','🧁','کاپ‌کیک',60000,'با تزئین فوندانت'],['شیرینی','🍪','کوکی',45000,'با چیپس شکلات'],
+    ['نان','🥖','باگت فرانسوی',50000,'ترد و تازه'],['نان','🍞','نان تست',55000,'نرم و پفی'],
+    ['شکلات','🍫','شکلات تلخ دست‌ساز',180000,'کاکائوی ۷۰٪'],['شکلات','🍩','دونات',55000,'با گلاس رنگی']] }
+};
+
+const q = new URLSearchParams(location.search);
+const k = R[q.get('k')] ? q.get('k') : 'restaurant';
+const S = R[k];
+const name = q.get('n') || S.title;
+const fmt = n => n.toLocaleString('fa-IR') + ' تومان';
+const $ = id => document.getElementById(id);
+
+const T = S.theme;
+Object.entries({ bg: T.bg, bg2: T.bg2, tx: T.tx, mu: T.mu, a: T.a, bd: T.bd, ff: T.ff, on: T.on })
+  .forEach(([key, v]) => document.documentElement.style.setProperty('--' + key, v));
+
+document.title = name;
+$('brand').textContent = S.hero + ' ' + name;
+$('hEm').textContent = S.hero;
+$('hTitle').textContent = name;
+$('hTag').textContent = S.tag;
+$('heroBook').textContent = S.form;
+$('navBook').textContent = S.form;
+$('formTitle').textContent = S.form;
+$('fBtn').textContent = S.btn;
+$('foot').textContent = '© ' + name + ' - تمام حقوق محفوظ است';
+
+let cat = S.cats[0], order = {};
+
+function drawTabs() {
+  $('tabs').innerHTML = S.cats.map(c => `<button class="tab ${c === cat ? 'on' : ''}" data-c="${c}">${c}</button>`).join('');
+}
+function drawMenu() {
+  $('menuList').innerHTML = S.items.map((it, i) => ({ it, i })).filter(x => x.it[0] === cat).map(({ it, i }) => `
+    <div class="it"><div class="e">${it[1]}</div>
+      <div class="d"><h4>${it[2]}</h4><small>${it[4]}</small><div class="pr">${fmt(it[3])}</div></div>
+      <button data-a="${i}" aria-label="افزودن">+</button></div>`).join('');
+}
+function drawOrder() {
+  let n = 0, sum = 0;
+  Object.entries(order).forEach(([i, c]) => { n += c; sum += S.items[i][3] * c; });
+  $('obar').classList.toggle('on', n > 0);
+  $('oinfo').textContent = n.toLocaleString('fa-IR') + ' آیتم · ' + fmt(sum);
+}
+function toast(t) {
+  const el = $('toast');
+  el.textContent = t; el.classList.add('on');
+  clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 2400);
+}
+
+$('tabs').onclick = e => { const c = e.target.dataset.c; if (c) { cat = c; drawTabs(); drawMenu(); } };
+$('menuList').onclick = e => {
+  const a = e.target.dataset.a;
+  if (a !== undefined) { order[a] = (order[a] || 0) + 1; drawOrder(); toast(S.items[a][2] + ' اضافه شد ✅'); }
+};
+$('obtn').onclick = () => toast('این یک نمونه است؛ در سایت واقعی سفارش برای رستوران ارسال میشه 🍽️');
+$('form').onsubmit = e => {
+  e.preventDefault();
+  toast('ممنون ' + $('fName').value + '، درخواستت ثبت شد ✅');
+  e.target.reset();
+};
+
+drawTabs(); drawMenu(); drawOrder();
+injectDemoBar(name, '');
+</script>
+</body>
+</html>
