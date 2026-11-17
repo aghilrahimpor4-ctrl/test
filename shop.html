@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فروشگاه آنلاین</title>
+<style>
+:root{--bar:46px;--h:250;--a:hsl(var(--h) 70% 48%);--a2:hsl(calc(var(--h) + 40) 70% 40%);--bg:#fff;--bg2:#f5f6fa;--tx:#1f2937;--mu:#6b7280;--bd:#e5e7eb}
+body.dark{--bg:#0d0d10;--bg2:#17171b;--tx:#f3ecd7;--mu:#a39b85;--bd:#2c2b2f;--a:#d4af37;--a2:#a8861f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.top{position:sticky;top:var(--bar);z-index:40;display:flex;align-items:center;gap:14px;padding:12px 24px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.brand{font-weight:800;font-size:1.25rem;color:var(--a);white-space:nowrap}
+.sbox{flex:1;max-width:460px;margin:auto;padding:10px 16px;border:1px solid var(--bd);border-radius:99px;background:var(--bg2);color:var(--tx);font-family:inherit;outline:none}
+.cartbtn{position:relative;background:var(--a);color:#fff;border:none;border-radius:12px;padding:8px 18px;font-size:1rem}
+body.dark .cartbtn{color:#111}
+.cartbtn b{position:absolute;top:-8px;left:-8px;background:#ef4444;color:#fff;border-radius:99px;font-size:.72rem;padding:0 7px;display:none}
+
+.hero{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px;padding:56px 32px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff}
+body.dark .hero{background:linear-gradient(135deg,#1a1710,#2b2412);color:#f3ecd7}
+.hero h1{font-size:2.3rem;line-height:1.4;margin-bottom:8px}
+.hero p{opacity:.92;margin-bottom:18px}
+.hero .cta{display:inline-block;background:#fff;color:var(--a2);padding:10px 26px;border-radius:12px;font-weight:bold}
+body.dark .hero .cta{background:var(--a);color:#111}
+.hero .em{font-size:8rem;text-align:center;filter:drop-shadow(0 12px 24px rgba(0,0,0,.3))}
+
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:16px 24px;background:var(--bg2);text-align:center;font-size:.9rem}
+.feat div{padding:6px}
+
+.shop{max-width:1150px;margin:auto;padding:34px 20px 60px}
+.shop h2{font-size:1.5rem;margin-bottom:16px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.chip{padding:7px 18px;border-radius:99px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);font-size:.92rem}
+.chip.on{background:var(--a);color:#fff;border-color:var(--a)}
+body.dark .chip.on{color:#111}
+.sel{margin-right:auto;padding:8px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);font-family:inherit}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.p{background:var(--bg);border:1px solid var(--bd);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.p:hover{transform:translateY(-5px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+.pimg{position:relative;height:170px;display:flex;align-items:center;justify-content:center;font-size:4.4rem;background:linear-gradient(135deg,hsl(var(--ph) 70% 90%),hsl(calc(var(--ph) + 30) 70% 80%))}
+body.dark .pimg{background:linear-gradient(135deg,#25221a,#35301f)}
+.badge{position:absolute;top:10px;right:10px;background:#ef4444;color:#fff;font-size:.72rem;padding:1px 10px;border-radius:99px}
+.fav{position:absolute;top:8px;left:10px;background:none;border:none;font-size:1.3rem;color:#ef4444}
+.pi{padding:12px 14px 14px}
+.pi small{color:var(--mu)}
+.pi h4{font-size:.98rem;margin:2px 0 6px}
+.pr{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pr b{color:var(--a)}
+.pr s{color:var(--mu);font-size:.8rem}
+.add{width:100%;margin-top:10px;padding:8px;border:none;border-radius:10px;background:var(--a);color:#fff;font-size:.92rem}
+body.dark .add{color:#111}
+.empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--mu)}
+
+.foot{background:var(--bg2);text-align:center;padding:30px 20px;color:var(--mu);font-size:.9rem;border-top:1px solid var(--bd)}
+
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;display:none}
+.ov.on{display:block}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(370px,100%);background:var(--bg);z-index:100;transform:translateX(-105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.4)}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--bd)}
+.dh button{background:none;border:none;font-size:1.2rem;color:var(--tx)}
+#lines{flex:1;overflow:auto;padding:10px 16px}
+.ln{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.le{font-size:2rem}
+.li{flex:1}
+.li small{color:var(--mu)}
+.qt{display:flex;align-items:center;gap:8px}
+.qt button{width:26px;height:26px;border-radius:8px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+.emp{text-align:center;padding:40px 0;color:var(--mu)}
+.df{padding:16px 18px;border-top:1px solid var(--bd)}
+.tot{display:flex;justify-content:space-between;margin-bottom:12px;font-size:1.05rem}
+.pay{width:100%;padding:12px;border:none;border-radius:12px;background:var(--a);color:#fff;font-size:1rem}
+body.dark .pay{color:#111}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:200;font-size:.92rem;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+@media(max-width:700px){.hero{grid-template-columns:1fr;text-align:center;padding:36px 20px}.hero .em{font-size:5rem;order:-1}.hero h1{font-size:1.7rem}.top{padding:10px 14px;gap:8px}.brand{font-size:1rem}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand" id="brand"></div>
+  <input class="sbox" id="search" type="search" placeholder="🔍 جستجوی محصول...">
+  <button class="cartbtn" id="cartBtn">🛒 سبد<b id="cnt">0</b></button>
+</header>
+
+<section class="hero">
+  <div>
+    <h1 id="hTitle"></h1>
+    <p id="hTag"></p>
+    <a href="#shop" class="cta">مشاهده محصولات</a>
+  </div>
+  <div class="em" id="hEm"></div>
+</section>
+
+<div class="feat">
+  <div>🚚 ارسال سریع به سراسر کشور</div>
+  <div>🔄 ۷ روز ضمانت بازگشت</div>
+  <div>💳 پرداخت امن</div>
+  <div>🎧 پشتیبانی ۲۴ ساعته</div>
+</div>
+
+<main class="shop" id="shop">
+  <h2>محصولات</h2>
+  <div class="tools">
+    <div id="chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+    <select class="sel" id="sort">
+      <option value="def">مرتب‌سازی: پیش‌فرض</option>
+      <option value="asc">ارزان‌ترین</option>
+      <option value="desc">گران‌ترین</option>
+    </select>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh"><b>🛒 سبد خرید</b><button id="dclose">✕</button></div>
+  <div id="lines"></div>
+  <div class="df">
+    <div class="tot"><span>جمع کل</span><b id="total"></b></div>
+    <button class="pay" id="pay">ثبت سفارش</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const STORES = {
+  clothing: { h: 340, title: 'فروشگاه پوشاک', tag: 'استایل خودت رو پیدا کن', hero: '👗', cats: ['مردانه', 'زنانه', 'بچگانه'], items: [
+    ['مردانه','👕','تیشرت نخی ساده',280000],['مردانه','👖','شلوار جین اسلیم',690000],['مردانه','🧥','کت اسپرت',1450000],['مردانه','👔','پیراهن رسمی',520000],
+    ['زنانه','👗','پیراهن مجلسی',1250000],['زنانه','👚','بلوز حریر',480000],['زنانه','🧥','مانتو کتان',890000],['زنانه','👘','کیمونو تابستانی',640000],
+    ['بچگانه','🧒','ست بچگانه',390000],['بچگانه','🧦','پک ۵ جفت جوراب',120000],['بچگانه','🧢','کلاه کتان',95000],['مردانه','👟','کفش کتانی',980000]] },
+  gold: { h: 45, title: 'گالری طلا و جواهر', tag: 'درخششی که ماندگار است', hero: '💍', cats: ['انگشتر','گردنبند','دستبند','سکه'], items: [
+    ['انگشتر','💍','حلقه نامزدی سولیتر',38500000],['انگشتر','💍','انگشتر اسپرت',9800000],['گردنبند','📿','گردنبند زنجیر ایتالیایی',14200000],['گردنبند','✨','آویز ستاره',5600000],
+    ['دستبند','⌚','دستبند النگویی',21000000],['دستبند','📿','دستبند تراش',7400000],['سکه','🪙','سکه تمام بهار آزادی',52000000],['سکه','🪙','نیم سکه',27000000]] },
+  accessory: { h: 20, title: 'بوتیک اکسسوری', tag: 'جزئیات، همه‌چیزه', hero: '👜', cats: ['کیف','عینک','شال و کلاه','ساعت'], items: [
+    ['کیف','👜','کیف دوشی چرم',1850000],['کیف','🎒','کوله شهری',950000],['عینک','🕶️','عینک آفتابی',720000],['عینک','👓','عینک طبی فریم گرد',560000],
+    ['شال و کلاه','🧣','شال نخی',340000],['شال و کلاه','🧢','کلاه کپ',190000],['ساعت','⌚','ساعت مچی کلاسیک',2400000],['ساعت','⌚','ساعت اسپرت',1300000]] },
+  digital: { h: 215, title: 'دیجی‌استور', tag: 'جدیدترین‌های دنیای دیجیتال', hero: '📱', cats: ['موبایل','لپ‌تاپ','صوتی','لوازم جانبی'], items: [
+    ['موبایل','📱','گوشی هوشمند ۲۵۶ گیگ',32000000],['موبایل','📱','گوشی میان‌رده',14500000],['لپ‌تاپ','💻','لپ‌تاپ ۱۶ اینچ',58000000],['لپ‌تاپ','🖥️','مانیتور ۲۷ اینچ',16500000],
+    ['صوتی','🎧','هدفون بی‌سیم',3900000],['صوتی','🔊','اسپیکر بلوتوثی',2100000],['لوازم جانبی','🎮','دسته بازی',2800000],['لوازم جانبی','📷','دوربین اکشن',9500000]] },
+  beauty: { h: 320, title: 'بیوتی شاپ', tag: 'زیبایی از خودته', hero: '💄', cats: ['آرایش','پوست','عطر','مو'], items: [
+    ['آرایش','💄','رژلب مات',280000],['آرایش','💅','ست لاک',190000],['پوست','🧴','کرم مرطوب‌کننده',420000],['پوست','🧼','ژل شست‌وشوی صورت',230000],
+    ['عطر','🌸','ادکلن زنانه ۱۰۰ میل',2100000],['عطر','🌿','ادکلن مردانه ۱۰۰ میل',2400000],['مو','🧴','شامپو ترمیم‌کننده',310000],['مو','💆','سرم مو',450000]] },
+  home: { h: 150, title: 'خانه‌دکور', tag: 'خونه‌ت رو دوست‌داشتنی کن', hero: '🛋️', cats: ['مبل و دکور','آشپزخانه','روشنایی','گل و گیاه'], items: [
+    ['مبل و دکور','🛋️','مبل راحتی دو نفره',24000000],['مبل و دکور','🖼️','تابلو دکوراتیو',1200000],['آشپزخانه','🍳','ست قابلمه',3800000],['آشپزخانه','☕','ست فنجان ۶ نفره',850000],
+    ['روشنایی','💡','لوستر مدرن',6200000],['روشنایی','🕯️','شمع معطر',180000],['گل و گیاه','🪴','گلدان سرامیکی با گیاه',560000],['گل و گیاه','🌿','گیاه آپارتمانی',320000]] }
+};
+
+const q = new URLSearchParams(location.search);
+const k = STORES[q.get('k')] ? q.get('k') : 'clothing';
+const S = STORES[k];
+const name = q.get('n') || S.title;
+const hue = q.get('h') ? +q.get('h') : S.h;
+const fmt = n => n.toLocaleString('fa-IR') + ' تومان';
+const $ = id => document.getElementById(id);
+
+if (k === 'gold') document.body.classList.add('dark');
+document.documentElement.style.setProperty('--h', hue);
+document.title = name;
+$('brand').textContent = S.hero + ' ' + name;
+$('hTitle').textContent = name;
+$('hTag').textContent = S.tag;
+$('hEm').textContent = S.hero;
+$('foot').textContent = '© ' + name + ' - تمام حقوق محفوظ است';
+
+const P = S.items.map((it, i) => ({ i, cat: it[0], em: it[1], name: it[2], price: it[3] }));
+let cat = 'all', sort = 'def', term = '', cart = {}, favs = new Set();
+
+function drawChips() {
+  $('chips').innerHTML = ['all', ...S.cats].map(c =>
+    `<button class="chip ${cat === c ? 'on' : ''}" data-c="${c}">${c === 'all' ? 'همه' : c}</button>`).join('');
+}
+
+function drawGrid() {
+  let list = P.slice();
+  if (cat !== 'all') list = list.filter(x => x.cat === cat);
+  if (term) list = list.filter(x => x.name.includes(term));
+  if (sort === 'asc') list.sort((a, b) => a.price - b.price);
+  if (sort === 'desc') list.sort((a, b) => b.price - a.price);
+  $('grid').innerHTML = list.length ? list.map(x => {
+    const sale = x.i % 3 === 0;
+    const old = sale ? Math.round(x.price * 1.2 / 1000) * 1000 : 0;
+    return `<div class="p">
+      <div class="pimg" style="--ph:${(hue + x.i * 28) % 360}">${x.em}
+        ${sale ? '<span class="badge">تخفیف ویژه</span>' : ''}
+        <button class="fav" data-f="${x.i}">${favs.has(x.i) ? '❤️' : '🤍'}</button>
+      </div>
+      <div class="pi"><small>${x.cat}</small><h4>${x.name}</h4>
+        <div class="pr"><b>${fmt(x.price)}</b>${sale ? `<s>${fmt(old)}</s>` : ''}</div>
+        <button class="add" data-a="${x.i}">افزودن به سبد 🛒</button></div></div>`;
+  }).join('') : '<p class="empty">محصولی پیدا نشد 😕</p>';
+}
+
+function drawCart() {
+  const ids = Object.keys(cart);
+  let sum = 0, n = 0;
+  $('lines').innerHTML = ids.length ? ids.map(id => {
+    const p = P[id], c = cart[id];
+    sum += p.price * c; n += c;
+    return `<div class="ln"><span class="le">${p.em}</span><div class="li"><b>${p.name}</b><br><small>${fmt(p.price)}</small></div>
+      <div class="qt"><button data-m="${id}">−</button><span>${c.toLocaleString('fa-IR')}</span><button data-p="${id}">+</button></div></div>`;
+  }).join('') : '<p class="emp">سبد خرید خالی است 🛍️</p>';
+  $('total').textContent = fmt(sum);
+  $('cnt').textContent = n.toLocaleString('fa-IR');
+  $('cnt').style.display = n ? 'block' : 'none';
+}
+
+function toast(t) {
+  const el = $('toast');
+  el.textContent = t; el.classList.add('on');
+  clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 2200);
+}
+
+function openCart(on) { $('drawer').classList.toggle('on', on); $('ov').classList.toggle('on', on); }
+
+$('chips').onclick = e => { const c = e.target.dataset.c; if (c) { cat = c; drawChips(); drawGrid(); } };
+$('sort').onchange = e => { sort = e.target.value; drawGrid(); };
+$('search').oninput = e => { term = e.target.value.trim(); drawGrid(); };
+$('grid').onclick = e => {
+  const a = e.target.dataset.a, f = e.target.dataset.f;
+  if (a !== undefined) { cart[a] = (cart[a] || 0) + 1; drawCart(); toast('به سبد خرید اضافه شد ✅'); }
+  if (f !== undefined) { favs.has(+f) ? favs.delete(+f) : favs.add(+f); drawGrid(); }
+};
+$('lines').onclick = e => {
+  const m = e.target.dataset.m, p = e.target.dataset.p;
+  if (p !== undefined) cart[p]++;
+  if (m !== undefined) { cart[m]--; if (cart[m] <= 0) delete cart[m]; }
+  drawCart();
+};
+$('cartBtn').onclick = () => openCart(true);
+$('dclose').onclick = () => openCart(false);
+$('ov').onclick = () => openCart(false);
+$('pay').onclick = () => {
+  if (!Object.keys(cart).length) return toast('سبد خرید خالی است');
+  toast('این یک نمونه است؛ در سایت واقعی به درگاه پرداخت وصل میشه 💳');
+};
+
+drawChips(); drawGrid(); drawCart();
+injectDemoBar(name, q.get('p') ? fmt(+q.get('p')) : '');
+</script>
+</body>
+</html>
