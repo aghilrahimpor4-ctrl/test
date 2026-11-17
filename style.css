@@ -242,3 +242,7 @@ a { color: inherit; text-decoration: none; }
   .nav.open { display: flex; }
   .plan.featured { transform: none; }
 }
+.btns { display: flex; gap: 6px; }
+.btn-ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+.btn-ghost:hover { background: var(--primary); color: #fff; }
+.sample .btn { padding: 5px 14px; font-size: .85rem; }
