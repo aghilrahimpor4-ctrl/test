@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سایت خدماتی</title>
+<style>
+:root{--bar:46px;--h:190;--a:hsl(var(--h) 70% 42%);--a2:hsl(calc(var(--h) + 35) 70% 34%);--bg:#fff;--bg2:#f4f7f9;--tx:#1f2937;--mu:#6b7280;--bd:#e5e7eb;--on:#fff}
+body.dark{--bg:#0f1115;--bg2:#181b21;--tx:#f1f3f6;--mu:#9aa1ad;--bd:#2a2e36;--a:hsl(var(--h) 85% 55%);--a2:hsl(calc(var(--h) + 35) 85% 45%);--on:#0f1115}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--tx);line-height:1.9}
+a{color:inherit;text-decoration:none}
+button,input{font-family:inherit}
+.top{position:sticky;top:var(--bar);z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 28px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.brand{font-weight:800;color:var(--a);font-size:1.2rem}
+.btn{display:inline-block;padding:9px 24px;border-radius:10px;background:var(--a);color:var(--on);border:none;font-size:.95rem;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.hero{padding:72px 24px;text-align:center;background:linear-gradient(135deg,var(--a),var(--a2));color:var(--on)}
+.hero .em{font-size:4.6rem}
+.hero h1{font-size:2.3rem;margin:4px 0}
+.hero p{opacity:.92;margin-bottom:20px}
+.hero .btn{background:var(--on);color:var(--a2)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;padding:16px 24px;background:var(--bg2);text-align:center;font-size:.9rem}
+section{max-width:1000px;margin:auto;padding:56px 22px;text-align:center}
+section h2{font-size:1.6rem;margin-bottom:4px}
+.sub{color:var(--mu);margin-bottom:26px}
+.step{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--a);color:var(--on);align-items:center;justify-content:center;font-size:.9rem;margin-left:8px}
+.stitle{text-align:right;font-weight:bold;margin:26px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.sv{display:flex;align-items:center;gap:12px;text-align:right;background:var(--bg2);border:2px solid var(--bd);border-radius:16px;padding:14px;cursor:pointer;transition:.2s}
+.sv:hover{border-color:var(--a)}
+.sv.on{border-color:var(--a);background:var(--bg);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.sv .e{font-size:2.2rem}
+.sv small{color:var(--mu)}
+.sv b{color:var(--a);display:block;font-size:.92rem}
+input[type=date],input[type=text],input[type=tel]{width:100%;max-width:340px;padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+.slots{display:flex;flex-wrap:wrap;gap:10px}
+.slot{padding:8px 18px;border-radius:10px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);cursor:pointer}
+.slot.on{background:var(--a);color:var(--on);border-color:var(--a)}
+.slot:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.sum{margin-top:26px;padding:18px;border-radius:16px;background:var(--bg2);border:1px dashed var(--a);text-align:right}
+.fields{display:flex;flex-wrap:wrap;gap:10px}
+.ok{padding:30px;border-radius:18px;background:var(--bg2);border:2px solid var(--a);text-align:center}
+.ok .e{font-size:3.4rem}
+.ok code{display:inline-block;margin-top:8px;padding:4px 16px;border-radius:8px;background:var(--bg);font-size:1.1rem}
+.t3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.t3 div{background:var(--bg2);border-radius:16px;padding:18px;border:1px solid var(--bd)}
+.faq{text-align:right;max-width:700px;margin:auto}
+details{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:bold}
+details p{color:var(--mu);margin-top:6px}
+.foot{text-align:center;padding:26px;color:var(--mu);border-top:1px solid var(--bd);font-size:.9rem}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:200;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script>
+<script>
+const D={
+medical:{h:190,em:'🩺',title:'کلینیک سلامت',tag:'نوبت‌دهی آنلاین، بدون انتظار',cta:'رزرو نوبت',hours:'شنبه تا پنجشنبه ۸ تا ۲۰',
+ sv:[['🩺','ویزیت عمومی',350000,'۲۰ دقیقه'],['🦷','ویزیت دندان‌پزشکی',500000,'۳۰ دقیقه'],['🧪','آزمایش خون',280000,'۱۵ دقیقه'],['👁️','معاینه چشم',420000,'۲۵ دقیقه']]},
+beauty:{h:320,em:'💇',title:'سالن زیبایی رز',tag:'زیبایی با دست متخصص',cta:'رزرو وقت',hours:'همه روزه ۹ تا ۲۱',
+ sv:[['💇','کوتاهی و براشینگ',450000,'۴۵ دقیقه'],['💅','مانیکور و پدیکور',600000,'۶۰ دقیقه'],['💄','میکاپ',1200000,'۹۰ دقیقه'],['💆','اسپا و ماساژ',900000,'۶۰ دقیقه']]},
+gym:{h:10,dark:1,em:'🏋️',title:'باشگاه قدرت',tag:'بدن رویایی‌ت از امروز شروع میشه',cta:'ثبت‌نام و رزرو',hours:'شبانه‌روزی',
+ sv:[['🏋️','جلسه آزمایشی رایگان',0,'۶۰ دقیقه'],['🥊','کلاس کیک‌بوکسینگ',800000,'۹۰ دقیقه'],['🧘','کلاس یوگا',600000,'۶۰ دقیقه'],['👨‍🏫','جلسه مربی شخصی',950000,'۶۰ دقیقه']]},
+travel:{h:205,em:'✈️',title:'آژانس سفر ستاره',tag:'سفری فراموش‌نشدنی با ما',cta:'رزرو تور',hours:'همه روزه ۹ تا ۱۹',
+ sv:[['🏝️','تور کیش ۳ شب',6500000,'۴ روز'],['🕌','تور مشهد',4200000,'۳ روز'],['🌆','تور استانبول',18000000,'۵ روز'],['🏔️','تور شمال',3800000,'۲ روز']]},
+car:{h:0,dark:1,em:'🚗',title:'مرکز خدمات خودرو',tag:'خودروی شما در دستان مطمئن',cta:'رزرو نوبت',hours:'شنبه تا پنجشنبه ۸ تا ۱۸',
+ sv:[['🛢️','تعویض روغن',650000,'۳۰ دقیقه'],['🧼','کارواش کامل',350000,'۴۵ دقیقه'],['🔧','تعمیر و سرویس',1500000,'۲ ساعت'],['🛞','بالانس و تعویض لاستیک',480000,'۴۰ دقیقه']]}
+};
+const q=new URLSearchParams(location.search);
+const k=D[q.get('k')]?q.get('k'):'medical',S=D[k],$=id=>document.getElementById(id);
+document.documentElement.style.setProperty('--h',S.h);
+if(S.dark)document.body.classList.add('dark');
+document.title=S.title;
+const fmt=n=>n?n.toLocaleString('fa-IR')+' تومان':'رایگان';
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2400)}
+const TIMES=['۰۹:۰۰','۱۰:۳۰','۱۲:۰۰','۱۴:۰۰','۱۵:۳۰','۱۷:۰۰','۱۸:۳۰'];
+let B={svc:null,date:'',time:''};
+$('app').innerHTML=`
+<header class="top"><div class="brand">${S.em} ${S.title}</div><a href="#book" class="btn">${S.cta}</a></header>
+<div class="hero"><div class="em">${S.em}</div><h1>${S.title}</h1><p>${S.tag}</p><a href="#book" class="btn">${S.cta}</a></div>
+<div class="info"><div>🕒 ${S.hours}</div><div>📍 تهران، خیابان نمونه</div><div>📞 ۰۲۱-۱۲۳۴۵۶۷۸</div></div>
+<section id="book"><h2>${S.cta}</h2><p class="sub">در چهار مرحله ساده</p>
+<div id="flow"></div></section>
+<section style="padding-top:0"><h2>نظر مشتریان</h2><p class="sub">&nbsp;</p><div class="t3"><div>⭐⭐⭐⭐⭐<p>«خیلی راحت و سریع نوبت گرفتم.»</p></div><div>⭐⭐⭐⭐⭐<p>«برخورد عالی و حرفه‌ای.»</p></div><div>⭐⭐⭐⭐<p>«دقیقاً سر وقت پذیرش شدم.»</p></div></div></section>
+<section style="padding-top:0"><h2>سوالات متداول</h2><p class="sub">&nbsp;</p><div class="faq"><details><summary>آیا می‌شه نوبت را لغو کرد؟</summary><p>بله، تا ۲۴ ساعت قبل بدون هزینه.</p></details><details><summary>پرداخت چطور انجام میشه؟</summary><p>پرداخت در محل یا آنلاین.</p></details><details><summary>اگر دیر برسم چی؟</summary><p>لطفاً ۱۰ دقیقه زودتر مراجعه کنید.</p></details></div></section>
+<div class="foot">© ${S.title} - تمام حقوق محفوظ است</div>`;
+function draw(){
+  const d=B.date,seed=[...d].reduce((a,c)=>a+c.charCodeAt(0),0);
+  $('flow').innerHTML=`
+  <div class="stitle"><span class="step">۱</span>خدمت را انتخاب کنید</div>
+  <div class="grid">${S.sv.map((s,i)=>`<div class="sv ${B.svc===i?'on':''}" onclick="B.svc=${i};draw()"><div class="e">${s[0]}</div><div><h4>${s[1]}</h4><small>${s[3]}</small><b>${fmt(s[2])}</b></div></div>`).join('')}</div>
+  <div class="stitle"><span class="step">۲</span>تاریخ</div>
+  <input type="date" id="dt" min="${new Date().toISOString().slice(0,10)}" value="${B.date}">
+  <div class="stitle"><span class="step">۳</span>ساعت</div>
+  ${B.date?`<div class="slots">${TIMES.map((t,i)=>`<button class="slot ${B.time===t?'on':''}" ${(seed+i)%4===0?'disabled':''} onclick="B.time='${t}';draw()">${t}</button>`).join('')}</div>`:'<p class="sub">ابتدا تاریخ را انتخاب کنید</p>'}
+  <div class="stitle"><span class="step">۴</span>اطلاعات شما</div>
+  <div class="fields"><input type="text" id="nm" placeholder="نام و نام خانوادگی"><input type="tel" id="ph" placeholder="شماره تماس"></div>
+  <div class="sum">${B.svc!==null?`<b>${S.sv[B.svc][1]}</b> · ${B.date||'—'} · ${B.time||'—'}<br>مبلغ: <b>${fmt(S.sv[B.svc][2])}</b>`:'هنوز خدمتی انتخاب نشده'}</div>
+  <p style="margin-top:14px"><button class="btn" id="go" ${B.svc!==null&&B.date&&B.time?'':'disabled'}>تأیید و ثبت</button></p>`;
+  $('dt').onchange=e=>{B.date=e.target.value;B.time='';draw()};
+  $('go').onclick=()=>{
+    const nm=$('nm').value.trim(),ph=$('ph').value.trim();
+    if(!nm||!ph)return toast('نام و شماره تماس را وارد کنید');
+    const code=Math.floor(10000+Math.random()*89999).toLocaleString('fa-IR',{useGrouping:false});
+    $('flow').innerHTML=`<div class="ok"><div class="e">✅</div><h3>${nm}، رزرو شما ثبت شد</h3><p>${S.sv[B.svc][1]} · ${B.date} · ${B.time}</p><code>کد پیگیری: ${code}</code><p style="margin-top:14px"><button class="btn" onclick="B={svc:null,date:'',time:''};draw()">رزرو جدید</button></p></div>`;
+  };
+}
+draw();
+injectDemoBar(q.get('n')||S.title,q.get('p')?(+q.get('p')).toLocaleString('fa-IR')+' تومان':'');
+</script>
+</body>
+</html>
