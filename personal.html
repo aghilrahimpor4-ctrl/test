@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سایت شخصی</title>
+<style>
+:root{--bar:46px;--h:250;--a:hsl(var(--h) 70% 50%);--a2:hsl(calc(var(--h) + 40) 70% 42%);--bg:#fff;--bg2:#f4f5fb;--tx:#1f2937;--mu:#6b7280;--bd:#e5e7eb;--on:#fff;--ff:Vazirmatn,Tahoma,sans-serif}
+body.dark{--bg:#0c0c10;--bg2:#16161d;--tx:#f1f1f5;--mu:#9a9aab;--bd:#2a2a35;--a:hsl(var(--h) 85% 65%);--a2:hsl(calc(var(--h) + 40) 85% 55%);--on:#0c0c10}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--bg);color:var(--tx);line-height:1.9}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit}
+.btn{display:inline-block;padding:9px 24px;border-radius:10px;background:var(--a);color:var(--on);border:none;font-size:.95rem;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+.chip{padding:7px 20px;border-radius:99px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);cursor:pointer}
+.chip.on{background:var(--a);color:var(--on);border-color:var(--a)}
+.wrap{max-width:1050px;margin:auto;padding:40px 20px 60px}
+.foot{text-align:center;padding:24px;color:var(--mu);border-top:1px solid var(--bd);font-size:.9rem}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.ov.on{display:flex}
+.box{background:var(--bg);color:var(--tx);border-radius:20px;padding:28px 24px;width:min(560px,100%);max-height:88vh;overflow:auto;position:relative}
+.box .x{position:absolute;top:10px;left:14px;background:none;border:none;font-size:1.2rem;color:var(--mu);cursor:pointer}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:200;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+/* رزومه */
+.cv{display:grid;grid-template-columns:300px 1fr;max-width:1000px;margin:30px auto;border:1px solid var(--bd);border-radius:22px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.cv aside{background:linear-gradient(180deg,var(--a),var(--a2));color:var(--on);padding:34px 22px;text-align:center}
+.cv .av{font-size:5rem}
+.cv aside h1{font-size:1.5rem}
+.cv aside ul{list-style:none;margin:18px 0;text-align:right;font-size:.9rem;display:flex;flex-direction:column;gap:6px}
+.cv aside .btn{background:var(--on);color:var(--a2)}
+.cv main{padding:34px 30px}
+.cv h3{color:var(--a);margin:22px 0 8px;border-bottom:2px solid var(--bd);padding-bottom:4px}
+.cv h3:first-child{margin-top:0}
+.sk{display:flex;align-items:center;gap:12px;margin:8px 0}
+.sk span{width:110px;font-size:.9rem}
+.bar{flex:1;height:9px;border-radius:99px;background:var(--bg2)}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--a),var(--a2));transition:width 1.2s}
+.tl>div{border-right:3px solid var(--a);padding:4px 16px;margin-bottom:12px}
+.tl small{color:var(--mu)}
+.tl p{color:var(--mu);font-size:.9rem}
+
+/* نمونه‌کار */
+.ph{text-align:center;padding:60px 20px 20px}
+.ph .av{font-size:4rem}
+.ph h1{font-size:2.2rem}
+.ph p{color:var(--mu)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.g{height:220px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;color:#fff;font-size:4rem;transition:.3s;position:relative;overflow:hidden}
+.g:hover{transform:scale(1.03)}
+.g span{font-size:1rem}
+.g small{position:absolute;bottom:10px;right:14px;font-size:.8rem;opacity:.85}
+
+/* وبلاگ */
+.bh{text-align:center;padding:56px 20px 10px}
+.bh h1{font-size:2.4rem}
+.bh p{color:var(--mu)}
+.bs{display:block;margin:16px auto 0;width:min(420px,100%);padding:11px 18px;border-radius:99px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+.posts{display:grid;gap:16px}
+.post{display:flex;gap:16px;background:var(--bg2);border:1px solid var(--bd);border-radius:18px;padding:16px;cursor:pointer;transition:.25s}
+.post:hover{border-color:var(--a);transform:translateX(-4px)}
+.post .th{font-size:2.6rem;width:90px;height:90px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:var(--bg);flex-shrink:0}
+.post small{color:var(--mu)}
+.post h3{margin:2px 0}
+.post p{color:var(--mu);font-size:.92rem}
+.read h2{margin:6px 0 10px}
+.read p{margin-bottom:10px;color:var(--mu)}
+
+/* عروسی */
+.wd{text-align:center;padding:50px 20px;background:radial-gradient(circle at 50% 0%,hsl(var(--h) 80% 94%),var(--bg))}
+.wd .fl{font-size:2.2rem;letter-spacing:10px}
+.wd h1{font-size:3rem;font-weight:400;color:var(--a);margin:6px 0}
+.wd .dt{color:var(--mu);margin-bottom:24px}
+.cd{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0}
+.cd div{background:var(--bg);border:1px solid var(--a);border-radius:14px;padding:12px 18px;min-width:76px}
+.cd b{display:block;font-size:1.8rem;color:var(--a)}
+.ev{max-width:620px;margin:30px auto;text-align:right}
+.ev div{display:flex;gap:14px;padding:12px 0;border-bottom:1px dotted var(--bd)}
+.ev b{color:var(--a);min-width:70px}
+.rsvp{max-width:420px;margin:30px auto;display:flex;flex-direction:column;gap:10px;text-align:right}
+.rsvp input,.rsvp select{padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+@media(max-width:760px){.cv{grid-template-columns:1fr}.wd h1{font-size:2.1rem}.post .th{width:64px;height:64px;font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="ov" id="ov"><div class="box" id="box"></div></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script>
+<script>
+const D={
+resume:{h:250,type:'resume',title:'رزومه سارا احمدی',name:'سارا احمدی',role:'توسعه‌دهنده فرانت‌اند',em:'👩‍💻',
+ about:'بیش از پنج سال تجربه در ساخت رابط‌های کاربری سریع و زیبا. عاشق کد تمیز و تجربه کاربری عالی.',
+ contact:['📧 sara@example.com','📞 ۰۹۱۲-۱۲۳-۴۵۶۷','📍 تهران','🔗 github.com/sara'],
+ skills:[['HTML و CSS',95],['جاوااسکریپت',88],['React',80],['طراحی رابط',72]],
+ exp:[['۱۴۰۲ - اکنون','توسعه‌دهنده ارشد','شرکت فناوری نمونه'],['۱۳۹۹ - ۱۴۰۲','توسعه‌دهنده فرانت‌اند','استارتاپ پارس'],['۱۳۹۷ - ۱۳۹۹','کارآموز برنامه‌نویسی','آژانس دیجیتال آرا']]},
+portfolio:{h:285,dark:1,type:'portfolio',title:'نمونه‌کار آرین موسوی',name:'آرین موسوی',role:'عکاس و طراح گرافیک',em:'📸',
+ items:[['عکاسی','🌄','طلوع در کویر','۱۴۰۳'],['عکاسی','🏙️','شب‌های شهر','۱۴۰۳'],['عکاسی','🌊','ساحل آرام','۱۴۰۲'],['گرافیک','🎨','پوستر جشنواره','۱۴۰۳'],['گرافیک','🏷️','هویت بصری کافه','۱۴۰۲'],['گرافیک','📦','طراحی بسته‌بندی','۱۴۰۲'],['ویدیو','🎬','تیزر تبلیغاتی','۱۴۰۳'],['ویدیو','🎞️','مستند کوتاه','۱۴۰۱']]},
+blog:{h:28,type:'blog',title:'وبلاگ سفر و زندگی',name:'دفترچه‌ی سفر',role:'یادداشت‌هایی از مسیر، قهوه و آدم‌ها',em:'✍️',ff:"Georgia,Vazirmatn,serif",
+ posts:[['سفر','🏔️','یک هفته در دل کوهستان','۱۲ آبان','تجربه‌ی سفر به کوه‌های شمال و چیزهایی که یاد گرفتم.','صبح زود با صدای باد بیدار شدم. هوا سرد بود و قهوه‌ام گرم. در این سفر یاد گرفتم گاهی کندتر راه رفتن بیشتر می‌بینی.'],['قهوه','☕','راهنمای دم‌آوری قهوه در خانه','۵ آبان','بدون دستگاه گران‌قیمت هم می‌شه قهوه عالی درست کرد.','آسیاب تازه، آب با دمای مناسب و کمی صبر؛ این سه چیز مهم‌ترین رازهای یک فنجان خوب است.'],['زندگی','🌱','عادت‌های کوچک، تغییرهای بزرگ','۲۸ مهر','چطور با قدم‌های کوچک زندگی را عوض کنیم.','هر روز ده دقیقه پیاده‌روی. همین. بعد از یک ماه فهمیدم کوچک‌ترین عادت‌ها پایدارترین‌اند.'],['سفر','🚂','با قطار از شمال تا جنوب','۱۴ مهر','ماجرای یک سفر طولانی با قطار و آدم‌هایی که دیدم.','پشت پنجره قطار، ایران مثل یک فیلم طولانی از جلوی چشمم رد شد.']]},
+wedding:{h:340,type:'wedding',title:'دعوت‌نامه عروسی',name:'سارا و علی',role:'با افتخار شما را به جشن عروسی خود دعوت می‌کنیم',em:'💍',ff:"Georgia,Vazirmatn,serif"}
+};
+const q=new URLSearchParams(location.search);
+const k=D[q.get('k')]?q.get('k'):'resume',S=D[k],$=id=>document.getElementById(id);
+document.documentElement.style.setProperty('--h',S.h);
+if(S.ff)document.documentElement.style.setProperty('--ff',S.ff);
+if(S.dark)document.body.classList.add('dark');
+document.title=S.title;
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2400)}
+function openM(h){$('box').innerHTML='<button class="x" onclick="closeM()">✕</button>'+h;$('ov').classList.add('on')}
+function closeM(){$('ov').classList.remove('on')}
+$('ov').onclick=e=>{if(e.target.id==='ov')closeM()};
+const foot=`<div class="foot">© ${S.name} - تمام حقوق محفوظ است</div>`;
+const R={};
+
+R.resume=()=>`<div class="cv"><aside><div class="av">${S.em}</div><h1>${S.name}</h1><p>${S.role}</p><ul>${S.contact.map(c=>`<li>${c}</li>`).join('')}</ul><button class="btn" onclick="toast('در سایت واقعی فایل PDF دانلود میشه 📄')">دانلود رزومه</button></aside>
+<main><h3>درباره من</h3><p>${S.about}</p><h3>مهارت‌ها</h3>${S.skills.map(s=>`<div class="sk"><span>${s[0]}</span><div class="bar"><i data-w="${s[1]}"></i></div><small>${s[1].toLocaleString('fa-IR')}٪</small></div>`).join('')}<h3>سوابق کاری</h3><div class="tl">${S.exp.map(e=>`<div><small>${e[0]}</small><br><b>${e[1]}</b><p>${e[2]}</p></div>`).join('')}</div></main></div>${foot}`;
+R.resume.after=()=>setTimeout(()=>document.querySelectorAll('[data-w]').forEach(b=>b.style.width=b.dataset.w+'%'),200);
+
+let pf='all';
+R.portfolio=()=>`<div class="ph"><div class="av">${S.em}</div><h1>${S.name}</h1><p>${S.role}</p></div><div class="wrap"><div class="chips" id="pc"></div><div class="gal" id="pg"></div></div>${foot}`;
+R.portfolio.after=()=>{
+  const cats=['all',...new Set(S.items.map(i=>i[0]))];
+  $('pc').innerHTML=cats.map(c=>`<button class="chip ${pf===c?'on':''}" onclick="pf='${c}';R.portfolio.after()">${c==='all'?'همه':c}</button>`).join('');
+  $('pg').innerHTML=S.items.map((x,i)=>({x,i})).filter(o=>pf==='all'||o.x[0]===pf).map(({x,i})=>`<div class="g" style="background:linear-gradient(135deg,hsl(${(S.h+i*38)%360} 70% 52%),hsl(${(S.h+i*38+50)%360} 70% 38%))" onclick="viewP(${i})">${x[1]}<span>${x[2]}</span><small>${x[0]} · ${x[3]}</small></div>`).join('');
+};
+function viewP(i){const x=S.items[i];openM(`<div style="text-align:center"><div style="font-size:7rem">${x[1]}</div><h2>${x[2]}</h2><p style="color:var(--mu)">${x[0]} · ${x[3]}</p><p style="margin:14px 0">توضیح کوتاه درباره‌ی این پروژه، ایده‌ی اصلی و ابزارهای استفاده‌شده در اینجا نوشته میشه.</p><button class="btn" onclick="closeM();toast('پیام شما به ${S.name} ارسال میشه ✉️')">سفارش مشابه</button></div>`)}
+
+let bc='all',bq='';
+R.blog=()=>`<div class="bh"><h1>${S.em} ${S.name}</h1><p>${S.role}</p><input class="bs" id="bs" placeholder="🔍 جستجو در نوشته‌ها..."></div><div class="wrap"><div class="chips" id="bcs"></div><div class="posts" id="bp"></div></div>${foot}`;
+R.blog.after=()=>{
+  const cats=['all',...new Set(S.posts.map(p=>p[0]))];
+  $('bcs').innerHTML=cats.map(c=>`<button class="chip ${bc===c?'on':''}" onclick="bc='${c}';R.blog.after()">${c==='all'?'همه':c}</button>`).join('');
+  const l=S.posts.map((p,i)=>({p,i})).filter(o=>(bc==='all'||o.p[0]===bc)&&(!bq||o.p[2].includes(bq)||o.p[4].includes(bq)));
+  $('bp').innerHTML=l.length?l.map(({p,i})=>`<div class="post" onclick="readP(${i})"><div class="th">${p[1]}</div><div><small>${p[0]} · ${p[3]}</small><h3>${p[2]}</h3><p>${p[4]}</p></div></div>`).join(''):'<p style="text-align:center;color:var(--mu)">نوشته‌ای پیدا نشد 😕</p>';
+  $('bs').oninput=e=>{bq=e.target.value.trim();R.blog.after();$('bs').focus()};
+};
+function readP(i){const p=S.posts[i];openM(`<div class="read"><div style="font-size:3rem">${p[1]}</div><small style="color:var(--mu)">${p[0]} · ${p[3]}</small><h2>${p[2]}</h2><p>${p[5]}</p><p>در سایت واقعی متن کامل مقاله، تصاویر و بخش نظرات اینجا نمایش داده میشه.</p></div>`)}
+
+R.wedding=()=>`<div class="wd"><div class="fl">🌸 🌹 🌸</div><p>${S.role}</p><h1>${S.name}</h1><div class="dt" id="wdt"></div><div class="cd" id="cd"></div><div class="fl">${S.em}</div></div>
+<div class="wrap"><h2 style="text-align:center;color:var(--a)">برنامه مراسم</h2><div class="ev"><div><b>۱۷:۰۰</b>پذیرایی و پیشواز مهمانان</div><div><b>۱۸:۰۰</b>مراسم عقد</div><div><b>۱۹:۳۰</b>شام</div><div><b>۲۱:۰۰</b>رقص و شادی</div></div>
+<h2 style="text-align:center;color:var(--a)">مکان</h2><p style="text-align:center;color:var(--mu)">📍 تهران، باغ تالار نمونه، خیابان گل‌ها</p>
+<h2 style="text-align:center;color:var(--a);margin-top:30px">تأیید حضور</h2><form class="rsvp" id="rv"><input id="rn" placeholder="نام شما" required><select><option>حتماً می‌آیم 🎉</option><option>نمی‌توانم بیایم 😔</option></select><select><option>۱ نفر</option><option>۲ نفر</option><option>۳ نفر</option><option>۴ نفر</option></select><button class="btn">ارسال پاسخ</button></form></div>${foot}`;
+R.wedding.after=()=>{
+  const t=new Date(Date.now()+45*864e5);t.setHours(18,0,0,0);
+  $('wdt').textContent='📅 '+t.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' · ساعت ۱۸:۰۰';
+  function tick(){
+    let d=Math.max(0,t-Date.now());
+    const D_=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),Sx=Math.floor(d%6e4/1e3);
+    $('cd').innerHTML=[[D_,'روز'],[H,'ساعت'],[M,'دقیقه'],[Sx,'ثانیه']].map(x=>`<div><b>${x[0].toLocaleString('fa-IR')}</b>${x[1]}</div>`).join('');
+  }
+  tick();setInterval(tick,1000);
+  $('rv').onsubmit=e=>{e.preventDefault();toast('ممنون '+$('rn').value+'، پاسخت ثبت شد 💌');e.target.reset()};
+};
+
+$('app').innerHTML=R[S.type]();
+if(R[S.type].after)R[S.type].after();
+injectDemoBar(q.get('n')||S.title,q.get('p')?(+q.get('p')).toLocaleString('fa-IR')+' تومان':'');
+</script>
+</body>
+</html>
