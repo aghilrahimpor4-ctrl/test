@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سایت آموزشی</title>
+<style>
+:root{--bar:46px;--h:210;--a:hsl(var(--h) 75% 48%);--a2:hsl(calc(var(--h) + 40) 75% 40%);--bg:#fff;--bg2:#f3f6fc;--tx:#1f2937;--mu:#6b7280;--bd:#e5e7eb;--on:#fff}
+body.dark{--bg:#0d1117;--bg2:#161b22;--tx:#e6edf3;--mu:#8b949e;--bd:#2a313c;--a:hsl(var(--h) 85% 62%);--a2:hsl(calc(var(--h) + 40) 85% 50%);--on:#0d1117}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--tx);line-height:1.9}
+a{color:inherit;text-decoration:none}
+button,input{font-family:inherit}
+.top{position:sticky;top:var(--bar);z-index:40;display:flex;align-items:center;gap:20px;padding:12px 28px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.brand{font-weight:800;color:var(--a);font-size:1.2rem;margin-left:auto}
+.top nav{display:flex;gap:22px;color:var(--mu);font-size:.95rem}
+.btn{display:inline-block;padding:9px 24px;border-radius:10px;background:var(--a);color:var(--on);border:none;font-size:.95rem;cursor:pointer}
+.hero{padding:76px 24px;text-align:center;background:linear-gradient(135deg,var(--a),var(--a2));color:var(--on)}
+.hero .em{font-size:4.6rem}
+.hero h1{font-size:2.3rem;margin:4px 0}
+.hero p{opacity:.92;margin-bottom:20px}
+.hero .btn{background:var(--on);color:var(--a2)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;max-width:800px;margin:-34px auto 0;padding:0 20px;position:relative}
+.stats div{background:var(--bg);border:1px solid var(--bd);border-radius:16px;padding:16px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.stats b{display:block;font-size:1.7rem;color:var(--a)}
+.stats span{color:var(--mu);font-size:.85rem}
+section{max-width:1050px;margin:auto;padding:60px 22px;text-align:center}
+section h2{font-size:1.65rem;margin-bottom:4px}
+.sub{color:var(--mu);margin-bottom:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.chip{padding:7px 20px;border-radius:99px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);cursor:pointer}
+.chip.on{background:var(--a);color:var(--on);border-color:var(--a)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.c{background:var(--bg2);border:1px solid var(--bd);border-radius:18px;overflow:hidden;text-align:right;transition:.25s}
+.c:hover{transform:translateY(-5px);border-color:var(--a)}
+.c .t{height:110px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background:linear-gradient(135deg,var(--a),var(--a2))}
+.c .b{padding:14px}
+.c small{color:var(--mu)}
+.c h4{margin:2px 0}
+.c .p{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.c .p b{color:var(--a);font-size:.92rem}
+.c .btn{padding:5px 16px;font-size:.85rem}
+.t3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.t3 div{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.t3 .e{font-size:2.6rem}
+.faq{text-align:right;max-width:700px;margin:auto}
+details{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:bold}
+details p{color:var(--mu);margin-top:6px}
+.foot{text-align:center;padding:26px;color:var(--mu);border-top:1px solid var(--bd);font-size:.9rem}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.ov.on{display:flex}
+.box{background:var(--bg);border-radius:20px;padding:28px 22px;width:min(400px,100%);text-align:center;position:relative}
+.box .x{position:absolute;top:10px;left:14px;background:none;border:none;font-size:1.2rem;color:var(--mu);cursor:pointer}
+.box input{width:100%;padding:12px;margin:6px 0;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:200;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media(max-width:700px){.top nav{display:none}.hero h1{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="ov" id="ov"><div class="box" id="box"></div></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script>
+<script>
+const D={
+school:{h:210,em:'🏫',title:'دبستان و دبیرستان نمونه',tag:'تربیت نسلی خلاق و مسئولیت‌پذیر',cta:'ثبت‌نام',unit:'شهریه ماهانه',cats:['ابتدایی','متوسطه اول','متوسطه دوم'],
+ st:[['۳۵','سال سابقه'],['۸۰','معلم مجرب'],['۹۸٪','قبولی دانشگاه']],
+ it:[['ابتدایی','📚','پایه اول تا سوم','یادگیری بازی‌محور',1800000],['ابتدایی','🎨','پایه چهارم تا ششم','علوم و هنر',2000000],['متوسطه اول','🔬','پایه هفتم تا نهم','آزمایشگاه مجهز',2400000],['متوسطه دوم','📐','رشته ریاضی فیزیک','کنکور و المپیاد',3200000],['متوسطه دوم','🧬','رشته تجربی','کلاس‌های تقویتی',3200000],['متوسطه دوم','📖','رشته انسانی','مشاوره تحصیلی',2800000]],
+ tc:[['👩‍🏫','مدیر مدرسه'],['👨‍🏫','معاون آموزشی'],['👩‍⚕️','مشاور تحصیلی']],
+ fq:[['زمان ثبت‌نام کی است؟','از اردیبهشت هر سال.'],['آیا سرویس مدرسه دارید؟','بله، سرویس رفت‌وآمد در سطح شهر.'],['کلاس‌ها چند نفره‌اند؟','حداکثر ۲۰ نفر.']]},
+course:{h:265,dark:1,em:'🖥️',title:'آکادمی آنلاین نوین',tag:'مهارت‌های روز را از هر جا یاد بگیر',cta:'ثبت‌نام در دوره',unit:'قیمت دوره',cats:['برنامه‌نویسی','طراحی','زبان'],
+ st:[['۵۰+','دوره'],['۸٬۰۰۰','دانشجو'],['۴۰','مدرس']],
+ it:[['برنامه‌نویسی','💻','جاوااسکریپت از صفر','۶۰ ساعت · پروژه‌محور',2900000],['برنامه‌نویسی','🐍','پایتون و هوش مصنوعی','۸۰ ساعت · مقدماتی تا پیشرفته',3900000],['طراحی','🎨','طراحی رابط کاربری','۴۰ ساعت · Figma',2400000],['طراحی','🖌️','گرافیک و برندینگ','۵۰ ساعت · پروژه‌محور',2600000],['زبان','🇬🇧','انگلیسی مکالمه','۴۵ ساعت · کلاس زنده',1800000],['زبان','🇩🇪','آلمانی A1','۶۰ ساعت · کلاس زنده',2200000]],
+ tc:[['👨‍💻','مدرس برنامه‌نویسی'],['👩‍🎨','مدرس طراحی'],['👩‍🏫','مدرس زبان']],
+ fq:[['دوره‌ها گواهی دارند؟','بله، گواهی معتبر پایان دوره.'],['دسترسی چقدر است؟','مادام‌العمر به ویدیوها.'],['پشتیبانی دارید؟','بله، پاسخ در کمتر از ۲۴ ساعت.']]},
+university:{h:350,em:'🏛️',title:'دانشگاه علم و صنعت نمونه',tag:'آینده‌ای روشن با علم و پژوهش',cta:'درخواست پذیرش',unit:'شهریه ترم',cats:['فنی و مهندسی','علوم پایه','هنر'],
+ st:[['۱۲','دانشکده'],['۱۵٬۰۰۰','دانشجو'],['۶۰۰','عضو هیئت علمی']],
+ it:[['فنی و مهندسی','💻','مهندسی کامپیوتر','کارشناسی · ۴ سال',9000000],['فنی و مهندسی','⚡','مهندسی برق','کارشناسی · ۴ سال',9000000],['علوم پایه','🧪','شیمی','کارشناسی · ۴ سال',7000000],['علوم پایه','📐','ریاضیات','کارشناسی · ۴ سال',7000000],['هنر','🎬','سینما و تلویزیون','کارشناسی · ۴ سال',8000000],['هنر','🏛️','معماری','کارشناسی · ۴ سال',9500000]],
+ tc:[['👨‍🎓','دانشکده فنی'],['👩‍🔬','پژوهشکده'],['📚','کتابخانه مرکزی']],
+ fq:[['شرایط پذیرش چیست؟','شرکت در کنکور سراسری یا آزمون داخلی.'],['خوابگاه دارید؟','بله، برای دانشجویان شهرستانی.'],['امکان بورسیه هست؟','برای رتبه‌های برتر.']]}
+};
+const q=new URLSearchParams(location.search);
+const k=D[q.get('k')]?q.get('k'):'school',S=D[k],$=id=>document.getElementById(id);
+document.documentElement.style.setProperty('--h',S.h);
+if(S.dark)document.body.classList.add('dark');
+document.title=S.title;
+const fmt=n=>n.toLocaleString('fa-IR')+' تومان';
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2400)}
+let cat='all';
+$('app').innerHTML=`
+<header class="top"><div class="brand">${S.em} ${S.title}</div><nav><a href="#cl">${k==='school'?'پایه‌ها':k==='course'?'دوره‌ها':'رشته‌ها'}</a><a href="#tc">درباره ما</a><a href="#fq">سوالات</a></nav><a href="#cl" class="btn">${S.cta}</a></header>
+<div class="hero"><div class="em">${S.em}</div><h1>${S.title}</h1><p>${S.tag}</p><a href="#cl" class="btn">${S.cta}</a></div>
+<div class="stats">${S.st.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+<section id="cl"><h2>${k==='school'?'پایه‌های تحصیلی':k==='course'?'دوره‌های آموزشی':'رشته‌های تحصیلی'}</h2><p class="sub">یکی را انتخاب کن و ثبت‌نام کن</p><div class="chips" id="chips"></div><div class="grid" id="list"></div></section>
+<section id="tc" style="padding-top:0"><h2>درباره ما</h2><p class="sub">&nbsp;</p><div class="t3">${S.tc.map(t=>`<div><div class="e">${t[0]}</div><h4>${t[1]}</h4></div>`).join('')}</div></section>
+<section id="fq" style="padding-top:0"><h2>سوالات متداول</h2><p class="sub">&nbsp;</p><div class="faq">${S.fq.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('')}</div></section>
+<div class="foot">© ${S.title} - تمام حقوق محفوظ است</div>`;
+function draw(){
+  $('chips').innerHTML=['all',...S.cats].map(c=>`<button class="chip ${cat===c?'on':''}" onclick="cat='${c}';draw()">${c==='all'?'همه':c}</button>`).join('');
+  $('list').innerHTML=S.it.map((x,i)=>({x,i})).filter(o=>cat==='all'||o.x[0]===cat).map(({x,i})=>`
+   <div class="c"><div class="t">${x[1]}</div><div class="b"><small>${x[0]}</small><h4>${x[2]}</h4><small>${x[3]}</small>
+   <div class="p"><b>${fmt(x[4])}</b><button class="btn" onclick="enroll(${i})">${S.cta}</button></div></div></div>`).join('');
+}
+function enroll(i){
+  const x=S.it[i];
+  $('box').innerHTML=`<button class="x" onclick="closeM()">✕</button><div style="font-size:2.6rem">${x[1]}</div><h3>${x[2]}</h3><p style="color:var(--mu);margin-bottom:10px">${S.unit}: ${fmt(x[4])}</p><input id="en" placeholder="نام و نام خانوادگی"><input id="ep" placeholder="شماره تماس"><button class="btn" style="width:100%;margin-top:8px" onclick="sendE()">ارسال درخواست</button>`;
+  $('ov').classList.add('on');
+}
+function sendE(){
+  if(!$('en').value.trim()||!$('ep').value.trim())return toast('نام و شماره تماس را وارد کنید');
+  toast('درخواست '+$('en').value+' ثبت شد ✅');closeM();
+}
+function closeM(){$('ov').classList.remove('on')}
+$('ov').onclick=e=>{if(e.target.id==='ov')closeM()};
+draw();
+injectDemoBar(q.get('n')||S.title,q.get('p')?(+q.get('p')).toLocaleString('fa-IR')+' تومان':'');
+</script>
+</body>
+</html>
