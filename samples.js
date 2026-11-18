@@ -21,6 +21,21 @@ const READY = {
   food: {
     restaurant: 'restaurant.html?k=restaurant', cafe: 'restaurant.html?k=cafe',
     fastfood: 'restaurant.html?k=fastfood', bakery: 'restaurant.html?k=bakery'
+  },
+  company: {
+    tech: 'company.html?k=tech', construction: 'company.html?k=construction',
+    consulting: 'company.html?k=consulting', legal: 'company.html?k=legal', industry: 'company.html?k=industry'
+  },
+  personal: {
+    resume: 'personal.html?k=resume', portfolio: 'personal.html?k=portfolio',
+    blog: 'personal.html?k=blog', wedding: 'personal.html?k=wedding'
+  },
+  education: {
+    school: 'education.html?k=school', course: 'education.html?k=course', university: 'education.html?k=university'
+  },
+  service: {
+    medical: 'service.html?k=medical', beauty: 'service.html?k=beauty', gym: 'service.html?k=gym',
+    travel: 'service.html?k=travel', car: 'service.html?k=car'
   }
 };
 
